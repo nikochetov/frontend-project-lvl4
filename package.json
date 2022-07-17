@@ -1,0 +1,26 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Frontend project 4 by Hexlet (slack chat)",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikochetov/frontend-project-lvl4.git"
+  },
+  "keywords": [
+    "chat",
+    "slack",
+    "project",
+    "react",
+    "frontend"
+  ],
+  "author": "Nikolay Kochetov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikochetov/frontend-project-lvl4/issues"
+  },
+  "homepage": "https://github.com/nikochetov/frontend-project-lvl4#readme"
+}
