@@ -4,8 +4,7 @@
   "description": "Frontend project 4 by Hexlet (slack chat)",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test",
-    "start": "cd frontend && npm run start"
+    "test": "npm run test"
   },
   "repository": {
     "type": "git",
@@ -23,8 +22,5 @@
   "bugs": {
     "url": "https://github.com/nikochetov/frontend-project-lvl4/issues"
   },
-  "homepage": "https://github.com/nikochetov/frontend-project-lvl4#readme",
-  "dependencies": {
-    "@hexlet/chat-server": "^1.1.5"
-  }
+  "homepage": "https://github.com/nikochetov/frontend-project-lvl4#readme"
 }

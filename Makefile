@@ -5,7 +5,7 @@ build:
 	npm run build
 
 start-backend:
-	npx start-server --port 5001
+	cd backend && npm run start
 
 start-frontend:
-	npm start
+	cd frontend && npm run start
