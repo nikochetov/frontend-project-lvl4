@@ -4,7 +4,8 @@
   "description": "Frontend project 4 by Hexlet (slack chat)",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "npm run test",
+    "start": "cd frontend && npm run start"
   },
   "repository": {
     "type": "git",
