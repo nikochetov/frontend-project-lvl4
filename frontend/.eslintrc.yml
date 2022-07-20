@@ -1,0 +1,21 @@
+env:
+  node: true
+  browser: true
+  jest: true
+
+plugins:
+  - jest
+
+extends:
+  - 'eslint:recommended'
+  - 'airbnb-base'
+  - 'plugin:jest/recommended'
+  - 'plugin:react/recommended'
+  - 'plugin:react/jsx-runtime'
+
+rules:
+  import/extensions: 0
+
+parserOptions:
+  ecmaVersion: 12
+  sourceType: module

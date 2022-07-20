@@ -9,3 +9,6 @@ start-backend:
 
 start-frontend:
 	cd frontend && npm run start
+
+lint:
+	npx eslint .
