@@ -31,6 +31,7 @@ const Login = () => {
                 placeholder="Enter login"
                 value={values.login}
                 onChange={handleChange}
+                isInvalid={!!errors.login}
                 isValid={touched.login && !errors.login}
               ></Form.Control>
             </FloatingLabel>
@@ -51,6 +52,7 @@ const Login = () => {
                 value={values.password}
                 onChange={handleChange}
                 placeholder="Enter password"
+                isInvalid={!!errors.password}
                 isValid={touched.password && !errors.password}
               ></Form.Control>
             </FloatingLabel>
@@ -62,18 +64,6 @@ const Login = () => {
         </Form>
       )}
     </Formik>
-    // <>
-    //   <FloatingLabel
-    //     controlId="floatingInput"
-    //     label="Email address"
-    //     className="mb-3"
-    //   >
-    //     <Form.Control type="email" placeholder="name@example.com" />
-    //   </FloatingLabel>
-    //   <FloatingLabel controlId="floatingPassword" label="Password">
-    //     <Form.Control type="password" placeholder="Password" />
-    //   </FloatingLabel>
-    // </>
   );
 };
 
