@@ -10,6 +10,7 @@ extends:
   - 'airbnb-base'
   - 'plugin:jest/recommended'
   - 'plugin:react/recommended'
+  - 'plugin:react/jsx-runtime'
 
 rules:
   import/extensions: 0
