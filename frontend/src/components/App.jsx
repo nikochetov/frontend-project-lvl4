@@ -1,10 +1,11 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
-import { Route, BrowserRouter as Router, Routes, useLocation, Navigate } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link } from 'react-router-dom';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import AuthContext from '../../contexts';
 import useAuth from '../../hooks';
+import { Button } from 'react-bootstrap';
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,17 @@ const PrivateRoute = ({ children }) => {
 
   return (
     auth.isLoggedIn ? children : <Navigate to="/login" state={{ from: location }} />
+  );
+}
+
+const AuthButton = () => {
+  const auth = useAuth();
+  const location = useLocation();
+
+  return (
+    auth.isLoggedIn
+      ? <Button onClick={auth.logOut}>Log Out</Button>
+      : <Button as={Link} to="/login" state={{ from: location }}>Log In</Button>
   );
 };
 
