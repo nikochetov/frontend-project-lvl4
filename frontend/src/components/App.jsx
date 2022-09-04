@@ -1,11 +1,13 @@
 import '../styles/App.css';
 import React, { useState } from 'react';
-import { Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link } from 'react-router-dom';
+import {
+  Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link,
+} from 'react-router-dom';
+import { Button, Nav, Navbar } from 'react-bootstrap';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
-import AuthContext from '../../contexts';
-import useAuth from '../../hooks';
-import { Button } from 'react-bootstrap';
+import AuthContext from '../contexts';
+import useAuth from '../hooks';
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -43,13 +45,23 @@ const AuthButton = () => {
 };
 
 const App = () => (
+  <AuthProvider>
     <Router>
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link as={Link} to="/public">Public page</Nav.Link>
+          <Nav.Link as={Link} to="/private">Private page</Nav.Link>
+        </Nav>
+        <AuthButton />
+      </Navbar>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotMatch />} />
       </Routes>
     </Router>
+  </AuthProvider>
 );
 
 export default App;
