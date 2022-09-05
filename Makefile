@@ -8,7 +8,7 @@ start-backend:
 	npx start-server --port 5001
 
 start-frontend:
-	cd frontend && npm run start
+	cd frontend && CI=false DISABLE_ESLINT_PLUGIN=true npm run start
 
 lint:
 	npx eslint .
