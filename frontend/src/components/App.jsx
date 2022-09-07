@@ -8,6 +8,7 @@ import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import AuthContext from '../contexts';
 import useAuth from '../hooks';
+import TempLanding from './TempLanding';
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -31,7 +32,7 @@ const PrivateRoute = ({ children }) => {
   return (
     auth.isLoggedIn ? children : <Navigate to="/login" state={{ from: location }} />
   );
-}
+};
 
 const AuthButton = () => {
   const auth = useAuth();
@@ -49,16 +50,17 @@ const App = () => (
     <Router>
       <Navbar bg="light" expand="lg">
         <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/public">Public page</Nav.Link>
-          <Nav.Link as={Link} to="/private">Private page</Nav.Link>
-        </Nav>
         <AuthButton />
       </Navbar>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotMatch />} />
+        <Route path="/private" element={(
+          <PrivateRoute>
+            <TempLanding/>
+          </PrivateRoute>
+        )} />
       </Routes>
     </Router>
   </AuthProvider>

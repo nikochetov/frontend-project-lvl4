@@ -21,7 +21,8 @@ const Login = () => {
     const login = async () => {
       try {
         const response = await axios.post(routes.loginPath(), values);
-        navigate(state?.from || '/');
+        // navigate(state?.from || '/');
+        navigate(state?.from || 'private');
         auth.logIn();
         const { token } = response.data;
         localStorage.setItem('userId', JSON.stringify({ token }));
