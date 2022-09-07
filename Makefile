@@ -12,3 +12,6 @@ start-frontend:
 
 lint:
 	npx eslint .
+
+test:
+	cd frontend && npm run test
