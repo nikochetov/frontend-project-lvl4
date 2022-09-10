@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Formik } from 'formik';
@@ -16,13 +16,19 @@ const Login = () => {
   const navigate = useNavigate();
   const { state } = location;
 
+  useEffect(() => {
+    if (auth.isLoggedIn) {
+      navigate(state?.from || '/private');
+    }
+  }, []);
+
   const submit = (values) => {
     setAuthFailed(false);
     const login = async () => {
       try {
         const response = await axios.post(routes.loginPath(), values);
         // navigate(state?.from || '/');
-        navigate(state?.from || 'private');
+        navigate('/private');
         auth.logIn();
         const { token } = response.data;
         localStorage.setItem('userId', JSON.stringify({ token }));
