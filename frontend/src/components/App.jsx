@@ -3,15 +3,17 @@ import React, { useState } from 'react';
 import {
   Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link,
 } from 'react-router-dom';
-import { Button, Nav, Navbar } from 'react-bootstrap';
+import { Button, Navbar } from 'react-bootstrap';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import AuthContext from '../contexts';
 import useAuth from '../hooks';
 import TempLanding from './TempLanding';
 
+const hasToken = () => !!JSON.parse(localStorage.getItem('userId'));
+
 const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(hasToken());
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
     setLoggedIn(false);
