@@ -13,7 +13,7 @@ export const fetchChannels = createAsyncThunk(
     const response = await axios.get(routes.dataPath(), {
       headers: getAuthHeader(),
     });
-    return response.data;
+    return response.data.channels;
   },
 );
 
@@ -29,9 +29,8 @@ const channelsSlice = createSlice({
   },
 });
 
-export const selectors = channelsAdapter.getSelectors((state) => {
-  console.log('state::::::', state)
-  return state.channels
-});
+export const selectors = channelsAdapter.getSelectors((state) => state.channels);
+
+export const { actions } = channelsSlice;
 
 export default channelsSlice.reducer;
