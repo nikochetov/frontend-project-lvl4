@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/nikochetov/frontend-project-lvl4#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.5"
+    "@hexlet/chat-server": "^1.1.5",
+    "normalizr": "^3.6.2"
   }
 }
