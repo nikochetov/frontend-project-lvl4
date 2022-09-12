@@ -17,6 +17,14 @@ export const fetchChannels = createAsyncThunk(
   },
 );
 
+export const removeChannel = createAsyncThunk(
+  'channels/removeChannel',
+  async (id) => {
+    await axios.delete(routes.dataPath());
+    return id;
+  },
+);
+
 const channelsAdapter = createEntityAdapter();
 const initialState = channelsAdapter.getInitialState();
 
