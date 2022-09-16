@@ -8,7 +8,7 @@ import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import AuthContext from '../contexts';
 import useAuth from '../hooks';
-import TempLanding from './TempLanding';
+import Chat from './Chat';
 
 const hasToken = () => !!JSON.parse(localStorage.getItem('userId'));
 
@@ -60,7 +60,7 @@ const App = () => (
         <Route path="*" element={<NotMatch />} />
         <Route path="/private" element={(
           <PrivateRoute>
-            <TempLanding/>
+            <Chat/>
           </PrivateRoute>
         )} />
       </Routes>

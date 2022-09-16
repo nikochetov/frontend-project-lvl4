@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { fetchChannels, removeChannel, selectors } from '../slices/channelsSlice';
 
-const TempLanding = () => {
+const Chat = () => {
   const dispatch = useDispatch();
   const channels = useSelector(selectors.selectAll);
+
   useEffect(() => {
     dispatch(fetchChannels());
   }, [dispatch]);
@@ -30,4 +31,4 @@ const TempLanding = () => {
   );
 };
 
-export default TempLanding;
+export default Chat;
