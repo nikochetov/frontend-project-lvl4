@@ -1,11 +1,7 @@
 import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import routes from '../routes';
-
-const getAuthHeader = () => {
-  const userId = JSON.parse(localStorage.getItem('userId'));
-  return userId?.token ? { Authorization: `Bearer ${userId.token}` } : {};
-};
+import getAuthHeader from '../utils/get-auth-header';
 
 export const fetchChannels = createAsyncThunk(
   'channels/fetchChannels',
