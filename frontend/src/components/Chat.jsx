@@ -1,32 +1,36 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { fetchChannels, removeChannel, selectors } from '../slices/channelsSlice';
+import { io } from 'socket.io-client';
+import { fetchData } from '../thunks/data-thunk';
+import Messages from './messages/Messages';
+import Channels from './channels/Channels';
+import { UserContext } from '../contexts';
+
+const socket = io();
+socket.on('newMessage', (ev) => {
+  console.log('subscription on new messages:::', ev);
+});
 
 const Chat = () => {
+  // const [formValue, setFormValue] = useState('');
   const dispatch = useDispatch();
-  const channels = useSelector(selectors.selectAll);
+  const user = useContext(UserContext);
+  console.log(user.username);
 
   useEffect(() => {
-    dispatch(fetchChannels());
+    dispatch(fetchData());
   }, [dispatch]);
 
-  const handleRemoveChannel = (channelId) => {
-    dispatch(removeChannel(channelId));
+  const clickButton = () => {
+    socket.emit('newMessage', { body: 'hello, world' });
   };
 
-  return channels && (
+  return (
     <div className="mt-3">
-      <ul className="list-group">
-        {channels.map(({ id, name, removable }) => (
-          <li key={id} className="list-group-item d-flex">
-            <span className="mr-auto">{name}</span>
-            {removable && <Button variant="outline-danger" size="sm" onClick={() => handleRemoveChannel(id)}>
-              Delete
-            </Button>}
-          </li>
-        ))}
-      </ul>
+      <Channels />
+      <Messages />
+      <Button className="mt-3" onClick={() => clickButton()}>Emit message</Button>
     </div>
   );
 };

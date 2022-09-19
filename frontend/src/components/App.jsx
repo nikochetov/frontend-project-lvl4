@@ -1,23 +1,31 @@
 import '../styles/App.css';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link,
 } from 'react-router-dom';
 import { Button, Navbar } from 'react-bootstrap';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
-import AuthContext from '../contexts';
+import { AuthContext } from '../contexts';
 import useAuth from '../hooks';
 import Chat from './Chat';
+import UserContext from '../contexts/user-context';
 
-const hasToken = () => !!JSON.parse(localStorage.getItem('userId'));
+const hasToken = () => !!JSON.parse(localStorage.getItem('user'));
+
+const UserProvider = ({ children }) => {
+  const user = JSON.parse(localStorage.getItem('user'));
+  return <UserContext.Provider value={ user }>
+    { children }
+  </UserContext.Provider>;
+};
 
 const AuthProvider = ({ children }) => {
   const [isLoggedIn, setLoggedIn] = useState(hasToken());
   const logIn = () => setLoggedIn(true);
   const logOut = () => {
     setLoggedIn(false);
-    localStorage.removeItem('userId');
+    localStorage.removeItem('user');
   };
 
   return (
@@ -59,9 +67,11 @@ const App = () => (
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotMatch />} />
         <Route path="/private" element={(
-          <PrivateRoute>
-            <Chat/>
-          </PrivateRoute>
+          <UserProvider>
+            <PrivateRoute>
+              <Chat/>
+            </PrivateRoute>
+          </UserProvider>
         )} />
       </Routes>
     </Router>
