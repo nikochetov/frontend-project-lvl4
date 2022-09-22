@@ -1,7 +1,7 @@
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import { useRef, useEffect, useState } from 'react';
 
-export const MessageInput = ({ onFormSubmit }) => {
+const MessageInput = ({ onFormSubmit }) => {
   const [formValue, setFormValue] = useState('');
   const messageInput = useRef(null);
 
@@ -36,3 +36,5 @@ export const MessageInput = ({ onFormSubmit }) => {
     </InputGroup>
   );
 };
+
+export default MessageInput;
