@@ -1,48 +1,43 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Button, InputGroup, Form } from 'react-bootstrap';
+import { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 import { io } from 'socket.io-client';
 import { fetchData } from '../thunks/data-thunk';
 import Messages from './messages/Messages';
 import Channels from './channels/Channels';
 import { UserContext } from '../contexts';
+import MessageInput from './MessageInput';
 
 const socket = io();
+socket.on('newMessage', (ev) => {
+  console.log(ev);
+});
 
 const Chat = () => {
-  const [formValue, setFormValue] = useState('');
   const dispatch = useDispatch();
   const user = useContext(UserContext);
-  const messageInput = useRef(null);
-  console.log(user.username);
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
 
   useEffect(() => {
-    messageInput.current.focus();
     dispatch(fetchData());
-  }, [dispatch]);
+  }, []);
 
-  const clickButton = () => {
-    socket.emit('newMessage', { body: formValue, username: user.username });
+  const clickButton = (message) => {
+    socket.emit('newMessage', { body: message, username: user.username, channelId: currentChannelId });
   };
 
   return (
-    <div className="mt-3">
-      <Channels />
-      <Messages />
-      <InputGroup className="mb-3">
-        <Form.Control
-          ref={messageInput}
-          placeholder="Type message"
-          aria-label="Type message"
-          aria-describedby="basic-addon2"
-          value={formValue}
-          onChange={(ev) => setFormValue(ev.target.value)}
-        />
-        <Button variant="outline-secondary" id="button-addon2" onClick={() => clickButton()}>
-          Send
-        </Button>
-      </InputGroup>
-    </div>
+    <Container>
+      <Row>
+        <Col xs={3}>
+          <Channels />
+        </Col>
+        <Col>
+          <Messages />
+          <MessageInput onFormSubmit={clickButton}/>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

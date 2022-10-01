@@ -1,21 +1,35 @@
-import { useSelector } from 'react-redux';
-import { selectors as channelsSelectors } from '../../slices/channelsSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { ListGroup } from 'react-bootstrap';
+import {
+  selectors as channelsSelectors,
+  actions as channelsActions,
+} from '../../slices/channelsSlice';
 import Channel from './Channel';
 
 const Channels = () => {
+  const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
 
   const deleteChannel = (channelId) => {
     console.log(channelId);
   };
 
+  const changeChannel = (channelId) => {
+    dispatch(channelsActions.setCurrentChannelId(channelId));
+  };
+
   return channels && (
     <div className="mt-3">
-      <ul className="list-group">
+      <ListGroup className="list-group">
         {channels.map((channel) => (
-          <Channel key={channel.id} channel={channel} onDeleteChannel={deleteChannel}/>
+          <Channel
+            key={channel.id}
+            channel={channel}
+            onDeleteChannel={deleteChannel}
+            onChangeChannel={changeChannel}
+          />
         ))}
-      </ul>
+      </ListGroup>
     </div>
   );
 };

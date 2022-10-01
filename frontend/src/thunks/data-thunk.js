@@ -9,9 +9,10 @@ export const fetchData = () => async (dispatch) => {
   const response = await axios.get(routes.dataPath(), {
     headers: getAuthHeader(),
   });
-  const { channels, messages } = response.data;
+  const { channels, messages, currentChannelId } = response.data;
   batch(() => {
     dispatch(channelsActions.addChannels(channels));
+    dispatch(channelsActions.setCurrentChannelId(currentChannelId));
     dispatch(messagesActions.addMessages(messages));
   });
 };
