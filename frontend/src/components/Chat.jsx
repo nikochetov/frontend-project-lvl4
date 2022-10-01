@@ -27,14 +27,17 @@ const Chat = () => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col xs={3}>
+    <Container md={10} xxl={6} className='h-100 my-4 overflow-hidden rounded shadow'>
+      <Row className='h-100 bg-white flex-md-row'>
+        <Col xs={3} xl={3} className='border-end px-0 bg-light'>
+          <div className='bg-light mb-4 p-3 small'><span>Каналы</span></div>
           <Channels />
         </Col>
-        <Col>
-          <Messages />
-          <MessageInput onFormSubmit={clickButton}/>
+        <Col xs={9} xxl={6} className='col p-0 h-100 '>
+          <div className='bg-light mb-4 p-3 shadow-sm small'><span>Сообщения</span></div>
+          <div className='chat-messages overflow-auto px-5 '>
+          <Messages><MessageInput onFormSubmit={clickButton}/></Messages>
+          </div>
         </Col>
       </Row>
     </Container>

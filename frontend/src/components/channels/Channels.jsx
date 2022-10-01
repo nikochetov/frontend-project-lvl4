@@ -21,7 +21,7 @@ const Channels = () => {
 
   return channels && (
     <div className="mt-3">
-      <ListGroup className="list-group">
+      <ListGroup variant="flush" className="list-group">
         {channels.map((channel) => (
           <Channel
             key={channel.id}

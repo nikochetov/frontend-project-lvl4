@@ -7,7 +7,6 @@ const Channel = ({
   return (
     <ListGroup.Item
       action
-      className="list-group-item d-flex"
       active={isActive}
       onClick={() => onChangeChannel(id)}
     >

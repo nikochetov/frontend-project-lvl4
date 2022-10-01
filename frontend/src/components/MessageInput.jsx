@@ -16,7 +16,7 @@ const MessageInput = ({ onFormSubmit }) => {
   };
 
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="mt-3 mb-3">
       <Form.Control
         ref={messageInput}
         placeholder="Type message"

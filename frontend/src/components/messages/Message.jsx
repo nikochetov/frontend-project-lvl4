@@ -1,7 +1,9 @@
+import { ListGroup } from 'react-bootstrap';
+
 const Message = ({ body }) => (
-  <li className="list-group-item d-flex">
+  <ListGroup.Item className="list-group-item d-flex">
     <span className="mr-auto">{body}</span>
-  </li>
+  </ListGroup.Item>
 );
 
 export default Message;

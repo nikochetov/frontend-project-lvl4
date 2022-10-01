@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link,
 } from 'react-router-dom';
-import { Button, Navbar } from 'react-bootstrap';
+import { Button, Container, Navbar } from 'react-bootstrap';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import { AuthContext } from '../contexts';
@@ -58,9 +58,11 @@ const AuthButton = () => {
 const App = () => (
   <AuthProvider>
     <Router>
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
-        <AuthButton />
+      <Navbar bg="light" expand="lg" className='shadow'>
+        <Container xs={9} xl={8}>
+          <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
+          <AuthButton />
+        </Container>
       </Navbar>
       <Routes>
         <Route path="/" element={<Login />} />
