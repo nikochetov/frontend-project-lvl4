@@ -9,6 +9,7 @@ import Channel from './Channel';
 const Channels = () => {
   const dispatch = useDispatch();
   const channels = useSelector(channelsSelectors.selectAll);
+  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
 
   const deleteChannel = (channelId) => {
     console.log(channelId);
@@ -27,6 +28,7 @@ const Channels = () => {
             channel={channel}
             onDeleteChannel={deleteChannel}
             onChangeChannel={changeChannel}
+            isActive={channel.id === currentChannelId}
           />
         ))}
       </ListGroup>
