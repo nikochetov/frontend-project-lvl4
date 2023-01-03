@@ -4,12 +4,14 @@ import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { io } from 'socket.io-client';
+import _ from 'lodash';
 import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './messages/Messages';
 import Channels from './channels/Channels';
 import { UserContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
+import { actions } from '../slices/messagesSlice';
 
 const socket = io();
 socket.on('newMessage', (ev) => {
@@ -26,6 +28,9 @@ const Chat = () => {
   }, []);
 
   const clickButton = (message) => {
+    dispatch(actions.addMessage({
+      body: message, username: user.username, channelId: currentChannelId, id: _.uniqueId(),
+    }));
     socket.emit('newMessage', { body: message, username: user.username, channelId: currentChannelId });
   };
 

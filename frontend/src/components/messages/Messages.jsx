@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import { ListGroup } from 'react-bootstrap';
-import { selectors as messagesSelectors } from '../../slices/messagesSlice';
 import Message from './Message';
 
 const Messages = ({ children }) => {
