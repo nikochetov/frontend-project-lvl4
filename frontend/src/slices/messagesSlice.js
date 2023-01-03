@@ -1,24 +1,25 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { actions as channelsActions } from './channelsSlice';
+import { getDataThunk } from '../thunks/data-thunk';
 
-const messagesAdapter = createEntityAdapter();
-const initialState = messagesAdapter.getInitialState();
+const initialState = {
+  messages: null,
+};
 
 const messagesSlice = createSlice({
   name: 'messages',
   initialState,
-  reducers: {
-    addMessages: messagesAdapter.addMany,
-  },
   extraReducers: (builder) => {
-    builder.addCase(channelsActions.removeChannel, (state, action) => {
-      const channelId = action.payload;
-      console.log(state.entities);
+    // builder.addCase(channelsActions.removeChannel, (state, action) => {
+    //   const channelId = action.payload;
+    //   console.log(state.entities);
+    // });
+    builder.addCase(getDataThunk.fulfilled, (state, action) => {
+      const currentState = state;
+      currentState.messages = action.payload.messages;
     });
   },
 });
-
-export const selectors = messagesAdapter.getSelectors((state) => state.messages);
 
 export const { actions } = messagesSlice;
 

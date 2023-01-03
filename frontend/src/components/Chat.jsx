@@ -4,7 +4,7 @@ import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { io } from 'socket.io-client';
-import { fetchData } from '../thunks/data-thunk';
+import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './messages/Messages';
 import Channels from './channels/Channels';
 import { UserContext } from '../contexts';
@@ -19,10 +19,10 @@ socket.on('newMessage', (ev) => {
 const Chat = () => {
   const dispatch = useDispatch();
   const user = useContext(UserContext);
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(getDataThunk());
   }, []);
 
   const clickButton = (message) => {

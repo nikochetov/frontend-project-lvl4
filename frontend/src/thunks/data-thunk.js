@@ -1,20 +1,15 @@
 import axios from 'axios';
-import { batch } from 'react-redux';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import routes from '../routes';
 import getAuthHeader from '../utils/get-auth-header';
-import { actions as channelsActions } from '../slices/channelsSlice';
-import { actions as messagesActions } from '../slices/messagesSlice';
 
-export const fetchData = () => async (dispatch) => {
-  const response = await axios.get(routes.dataPath(), {
-    headers: getAuthHeader(),
-  });
-  const { channels, messages, currentChannelId } = response.data;
-  batch(() => {
-    dispatch(channelsActions.addChannels(channels));
-    dispatch(channelsActions.setCurrentChannelId(currentChannelId));
-    dispatch(messagesActions.addMessages(messages));
-  });
-};
+export const fetchData = async () => axios.get(routes.dataPath(), {
+  headers: getAuthHeader(),
+});
+
+export const getDataThunk = createAsyncThunk('dataThunk', async () => {
+  const response = await fetchData();
+  return response.data;
+});
 
 export default fetchData;

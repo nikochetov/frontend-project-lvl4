@@ -4,7 +4,7 @@ import { selectors as messagesSelectors } from '../../slices/messagesSlice';
 import Message from './Message';
 
 const Messages = ({ children }) => {
-  const messages = useSelector(messagesSelectors.selectAll);
+  const messages = useSelector((state) => state.messagesState.messages);
 
   return messages && (
     <>

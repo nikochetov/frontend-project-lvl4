@@ -1,15 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup } from 'react-bootstrap';
 import {
-  selectors as channelsSelectors,
   actions as channelsActions,
 } from '../../slices/channelsSlice';
 import Channel from './Channel';
 
 const Channels = () => {
   const dispatch = useDispatch();
-  const channels = useSelector(channelsSelectors.selectAll);
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  const { channels, currentChannelId } = useSelector((state) => state.channelsState);
 
   const deleteChannel = (channelId) => {
     console.log(channelId);

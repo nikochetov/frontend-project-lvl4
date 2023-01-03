@@ -3,13 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider } from 'react-redux';
-import { io } from 'socket.io-client';
 import App from './components/App.jsx';
 import reportWebVitals from './reportWebVitals';
 import store from './slices/index';
 
-const socket = io();
-console.log(socket);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

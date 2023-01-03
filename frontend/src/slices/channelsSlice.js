@@ -1,10 +1,10 @@
-import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice, current } from '@reduxjs/toolkit';
+import { getDataThunk } from '../thunks/data-thunk';
 
-const channelsAdapter = createEntityAdapter();
-const initialState = channelsAdapter.getInitialState({
+const initialState = {
   currentChannelId: 1,
   channels: null,
-});
+};
 
 const channelsSlice = createSlice({
   name: 'channels',
@@ -14,13 +14,15 @@ const channelsSlice = createSlice({
       const currentState = state;
       currentState.currentChannelId = payload;
     },
-    addChannels: channelsAdapter.addMany,
-    removeChannel: channelsAdapter.removeOne,
-    addChannel: channelsAdapter.addOne,
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getDataThunk.fulfilled, (state, action) => {
+      const currentState = state;
+      currentState.channels = action.payload.channels;
+      console.log('current state ::::', current(currentState))
+    });
   },
 });
-
-export const selectors = channelsAdapter.getSelectors((state) => state.channels);
 
 export const { actions } = channelsSlice;
 

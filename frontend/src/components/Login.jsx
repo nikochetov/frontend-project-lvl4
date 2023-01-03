@@ -30,8 +30,9 @@ const Login = () => {
         // navigate(state?.from || '/');
         navigate('/private');
         auth.logIn();
-        const { token } = response.data;
-        localStorage.setItem('userId', JSON.stringify({ token }));
+        // const { username, token } = response.data;
+        localStorage.setItem('user', JSON.stringify(response.data));
+        // localStorage.setItem('user', JSON.stringify({ username }));
       } catch (err) {
         setAuthFailed(true);
       }
