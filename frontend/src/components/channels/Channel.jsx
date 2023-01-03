@@ -10,7 +10,7 @@ const Channel = ({
       active={isActive}
       onClick={() => onChangeChannel(id)}
     >
-      <span className="mr-auto">{name}</span>
+      <span className="mr-auto">{`# ${name}`}</span>
       {removable && <Button variant="outline-danger" size="sm" onClick={() => onDeleteChannel(id)}>
         Delete
       </Button>}
