@@ -1,4 +1,4 @@
-import { createEntityAdapter, createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { getDataThunk } from '../thunks/data-thunk';
 
 const initialState = {
@@ -14,12 +14,15 @@ const channelsSlice = createSlice({
       const currentState = state;
       currentState.currentChannelId = payload;
     },
+    removeChannel: (state, { payload }) => {
+      const currentState = state;
+      currentState.channels = currentState.channels.filter((channel) => channel.id === payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getDataThunk.fulfilled, (state, action) => {
       const currentState = state;
       currentState.channels = action.payload.channels;
-      console.log('current state ::::', current(currentState))
     });
   },
 });

@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getDataThunk } from '../thunks/data-thunk';
+import { actions as channelsActions } from './channelsSlice';
 
 const initialState = {
-  messages: null,
+  messages: [],
+  channelMessages: [],
 };
 
 const messagesSlice = createSlice({
@@ -15,14 +17,19 @@ const messagesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // builder.addCase(channelsActions.removeChannel, (state, action) => {
-    //   const channelId = action.payload;
-    //   console.log(state.entities);
-    // });
-    builder.addCase(getDataThunk.fulfilled, (state, action) => {
-      const currentState = state;
-      currentState.messages = action.payload.messages;
-    });
+    builder
+      .addCase(getDataThunk.fulfilled, (state, { payload }) => {
+        const currentState = state;
+        currentState.messages = payload.messages;
+      })
+      .addCase(channelsActions.setCurrentChannelId, (state, { payload }) => {
+        const currentState = state;
+        currentState.channelMessages = currentState.messages.filter((message) => message.channelId === payload);
+      })
+      .addCase(channelsActions.removeChannel, (state, { payload }) => {
+        const currentState = state;
+        currentState.messages = currentState.messages.filter((message) => message.channelId === payload);
+      });
   },
 });
 

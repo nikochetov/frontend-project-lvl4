@@ -11,7 +11,8 @@ import Channels from './channels/Channels';
 import { UserContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
-import { actions } from '../slices/messagesSlice';
+import { actions as messagesActions } from '../slices/messagesSlice';
+import { actions as channelsActions } from '../slices/channelsSlice';
 
 const socket = io();
 socket.on('newMessage', (ev) => {
@@ -24,11 +25,12 @@ const Chat = () => {
   const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
 
   useEffect(() => {
+    dispatch(channelsActions.setCurrentChannelId(1));
     dispatch(getDataThunk());
   }, []);
 
   const clickButton = (message) => {
-    dispatch(actions.addMessage({
+    dispatch(messagesActions.addMessage({
       body: message, username: user.username, channelId: currentChannelId, id: _.uniqueId(),
     }));
     socket.emit('newMessage', { body: message, username: user.username, channelId: currentChannelId });
