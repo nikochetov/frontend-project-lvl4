@@ -5,8 +5,8 @@ import {
 import { Button, Container, Navbar } from 'react-bootstrap';
 import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
-import useAuth from '../hooks';
 import Chat from './Chat';
+import { useAuth } from '../hooks';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
