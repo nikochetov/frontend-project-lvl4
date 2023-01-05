@@ -3,22 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
-import { io } from 'socket.io-client';
 import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './messages/Messages';
 import Channels from './channels/Channels';
-import { UserContext } from '../contexts';
+import { SocketContext, UserContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
-import { actions as messagesActions } from '../slices/messagesSlice';
 import { actions as channelsActions } from '../slices/channelsSlice';
-
-const socket = io();
+import socketRequestKind from '../constants/socket-request-kind';
 
 const Chat = () => {
   const dispatch = useDispatch();
   const user = useContext(UserContext);
   const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
+  const socket = useContext(SocketContext);
 
   useEffect(() => {
     dispatch(channelsActions.setCurrentChannelId(1));
@@ -26,10 +24,10 @@ const Chat = () => {
   }, []);
 
   const clickButton = (message) => {
-    dispatch(messagesActions.addMessage({
-      body: message, username: user.username, channelId: currentChannelId,
-    }));
-    socket.emit('newMessage', { body: message, username: user.username, channelId: currentChannelId });
+    socket.emit(
+      socketRequestKind.newMessage,
+      { body: message, username: user.username, channelId: currentChannelId },
+    );
   };
 
   return (
