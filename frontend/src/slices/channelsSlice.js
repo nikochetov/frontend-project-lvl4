@@ -3,7 +3,7 @@ import { getDataThunk } from '../thunks/data-thunk';
 
 const initialState = {
   currentChannelId: 1,
-  channels: null,
+  channels: [],
 };
 
 const channelsSlice = createSlice({
@@ -13,6 +13,10 @@ const channelsSlice = createSlice({
     setCurrentChannelId: (state, { payload }) => {
       const currentState = state;
       currentState.currentChannelId = payload;
+    },
+    adChannel: (state, { payload }) => {
+      const currentState = state;
+      currentState.channels = [...currentState.channels, payload];
     },
     removeChannel: (state, { payload }) => {
       const currentState = state;
