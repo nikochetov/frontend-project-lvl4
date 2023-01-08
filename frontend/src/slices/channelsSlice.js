@@ -14,9 +14,14 @@ const channelsSlice = createSlice({
       const currentState = state;
       currentState.currentChannelId = payload;
     },
-    adChannel: (state, { payload }) => {
+    addChannel: (state, { payload }) => {
       const currentState = state;
       currentState.channels = [...currentState.channels, payload];
+    },
+    renameChannel: (state, { payload }) => {
+      const currentState = state;
+      const channel = currentState.channels.find((ch) => ch.id === payload.id);
+      channel.name = payload.name;
     },
     removeChannel: (state, { payload }) => {
       const currentState = state;
