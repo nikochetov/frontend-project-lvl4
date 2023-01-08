@@ -4,8 +4,8 @@ import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { getDataThunk } from '../thunks/data-thunk';
-import Messages from './messages/Messages';
-import Channels from './channels/Channels';
+import Messages from './Messages/Messages';
+import Channels from './Channels/Channels';
 import { SocketContext, UserContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
