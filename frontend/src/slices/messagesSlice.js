@@ -24,11 +24,15 @@ const messagesSlice = createSlice({
       })
       .addCase(channelsActions.setCurrentChannelId, (state, { payload }) => {
         const currentState = state;
-        currentState.channelMessages = currentState.messages.filter((message) => message.channelId === payload);
+        currentState.channelMessages = currentState.messages.filter(
+          (message) => message.channelId === payload,
+        );
       })
       .addCase(channelsActions.removeChannel, (state, { payload }) => {
         const currentState = state;
-        currentState.messages = currentState.messages.filter((message) => message.channelId === payload);
+        currentState.messages = currentState.messages.filter(
+          (message) => message.channelId === payload,
+        );
       });
   },
 });

@@ -11,6 +11,8 @@ import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
 import { actions as channelsActions } from '../slices/channelsSlice';
 import socketRequestKind from '../constants/socket-request-kind';
+import ModalContainer from './Modal/components/ModalContainer';
+import { actions as modalActions } from '../slices/modalSlice';
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -22,6 +24,10 @@ const Chat = () => {
     dispatch(channelsActions.setCurrentChannelId(1));
     dispatch(getDataThunk());
   }, []);
+
+  const addChannel = () => {
+    dispatch(modalActions.openModal({ kind: 'adding' }));
+  };
 
   const clickButton = (message) => {
     socket.emit(
@@ -35,7 +41,7 @@ const Chat = () => {
       <Row className='h-100 bg-white flex-md-row'>
         <Col xs={3} xl={3} className='border-end px-0 bg-light'>
           <div className='bg-light mb-4 p-3 small d-flex justify-content-between align-items-center'><div><span>Каналы</span></div>
-            <Button variant="light" className='p-0 text-primary btn btn-group-vertical'>
+            <Button variant="light" className='p-0 text-primary btn btn-group-vertical' onClick={addChannel}>
               <img src={addChannelIcon} style={{ width: '30px', color: '#0d6efd' }} alt="Добавить канал"/>
             </Button>
           </div>
@@ -48,6 +54,7 @@ const Chat = () => {
           </div>
         </Col>
       </Row>
+      <ModalContainer />
     </Container>
   );
 };
