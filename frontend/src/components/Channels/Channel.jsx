@@ -12,7 +12,7 @@ const Channel = ({
     >
       <span className="mr-auto">{`# ${name}`}</span>
       {removable && <Button variant="outline-danger" size="sm" onClick={() => onDeleteChannel(id)}>
-        Delete
+        Удалить
       </Button>}
     </ListGroup.Item>
   );

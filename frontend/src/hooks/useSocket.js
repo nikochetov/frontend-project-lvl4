@@ -15,6 +15,7 @@ const useSocket = (socket) => {
     channelsActions.renameChannel(ev);
   });
   socket.on(socketRequestKind.removeChannel, (ev) => {
+    console.log('event on socket:::::::', ev);
     channelsActions.removeChannel(ev);
   });
 

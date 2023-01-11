@@ -1,33 +1,34 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { actions } from '../../../slices/modalSlice';
+import { useContext } from 'react';
+import { actions as modalActions } from '../../../slices/modalSlice';
 import getModal from './index';
+import { SocketContext } from '../../../contexts';
+import socketRequestKind from '../../../constants/socket-request-kind';
 
 const ModalContainer = () => {
-  const { isOpen, kind: modalKind, data } = useSelector((state) => {
-    console.log('state::::::', state.modalsState)
-    return state.modalsState
-  });
+  const { isOpen, kind: modalKind, data } = useSelector((state) => state.modalsState);
   const dispatch = useDispatch();
+  const socket = useContext(SocketContext);
 
   const closeModal = () => {
-    dispatch(actions.closeModal());
+    dispatch(modalActions.closeModal());
   };
 
-
-  const submitModal = () => {}
+  const submitModal = (value) => {
+    console.log('value::::', value);
+    socket.emit(socketRequestKind.newChannel, { name: value });
+    closeModal();
+  }
 
   const renderModal = (kind) => {
     if (!kind) {
       return null;
     }
 
-    console.log('condition true')
     const Component = getModal(kind);
     return <Component data={data} submitModal={submitModal} onHide={closeModal} isOpen={isOpen}/>;
   };
 
-  console.log('rerender')
   return renderModal(modalKind);
 };
 

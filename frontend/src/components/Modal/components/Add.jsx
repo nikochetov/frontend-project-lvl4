@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 
 const Add = (props) => {
-  const { onHide } = props;
+  const { onHide, submitModal } = props;
   const inputEl = useRef(null);
   const { channels } = useSelector((state) => state.channelsState);
 
@@ -29,7 +29,7 @@ const Add = (props) => {
           .some((channelName) => channelName === value)),
     }),
     onSubmit: (values) => {
-      console.log('submit:::::::', values);
+      submitModal(values.body);
     },
   });
 

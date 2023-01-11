@@ -13,8 +13,8 @@ const Channels = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
   const socket = useContext(SocketContext);
 
-  const deleteChannel = (channelId) => {
-    socket.emit(socketRequestKind.removeChannel, channelId);
+  const deleteChannel = (id) => {
+    socket.emit(socketRequestKind.removeChannel, { id });
   };
 
   const changeChannel = (channelId) => {
