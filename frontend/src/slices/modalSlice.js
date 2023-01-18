@@ -11,13 +11,12 @@ const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, { payload }) => {
-      console.log('payload:::::', payload)
       const currentState = state;
       currentState.isOpen = true;
       const { kind, data } = payload;
       currentState.data = data;
       currentState.kind = kind;
-      console.log(current(currentState))
+      console.log(current(currentState));
     },
     closeModal: (state) => {
       const currentState = state;

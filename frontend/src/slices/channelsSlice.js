@@ -15,7 +15,6 @@ const channelsSlice = createSlice({
       currentState.currentChannelId = payload;
     },
     addChannel: (state, { payload }) => {
-      console.log('add channel payload:::::::::', payload)
       const currentState = state;
       currentState.channels = [...currentState.channels, payload];
     },
@@ -25,15 +24,14 @@ const channelsSlice = createSlice({
       channel.name = payload.name;
     },
     removeChannel: (state, { payload }) => {
-      console.log('payload:::::::::::', payload);
       const currentState = state;
       currentState.channels = currentState.channels.filter((channel) => channel.id === payload);
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getDataThunk.fulfilled, (state, action) => {
+    builder.addCase(getDataThunk.fulfilled, (state, { payload }) => {
       const currentState = state;
-      currentState.channels = action.payload.channels;
+      currentState.channels = payload.channels;
     });
   },
 });

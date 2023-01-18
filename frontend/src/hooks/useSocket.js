@@ -9,14 +9,13 @@ const useSocket = (socket) => {
     dispatch(messagesActions.addMessage(ev));
   });
   socket.on(socketRequestKind.newChannel, (ev) => {
-    channelsActions.addChannel(ev);
+    dispatch(channelsActions.addChannel(ev));
   });
   socket.on(socketRequestKind.renameChannel, (ev) => {
-    channelsActions.renameChannel(ev);
+    dispatch(channelsActions.renameChannel(ev));
   });
   socket.on(socketRequestKind.removeChannel, (ev) => {
-    console.log('event on socket:::::::', ev);
-    channelsActions.removeChannel(ev);
+    dispatch(channelsActions.removeChannel(ev));
   });
 
   return socket;

@@ -14,11 +14,11 @@ const init = async () => {
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
         <UserProvider>
-          <SocketProvider>
-            <AuthProvider>
+          <AuthProvider>
+            <SocketProvider>
               <App />
-            </AuthProvider>
-          </SocketProvider>
+            </SocketProvider>
+          </AuthProvider>
         </UserProvider>
       </I18nextProvider>
     </Provider>
