@@ -1,0 +1,30 @@
+import {
+  Button, Modal,
+} from 'react-bootstrap';
+
+const Remove = (props) => {
+  const { onHide, submitModal } = props;
+
+  return (
+    <div
+      className="modal show"
+    >
+      <Modal show onHide={onHide}>
+        <Modal.Header closeButton>
+          <Modal.Title>Удаление канала</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Вы действительно хотите удалить канал?</p>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary">Отмена</Button>
+          <Button variant="danger" onClick={() => submitModal()}>Удалить</Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+};
+
+export default Remove;

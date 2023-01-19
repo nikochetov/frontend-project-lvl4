@@ -18,7 +18,7 @@ const ModalContainer = () => {
     console.log('value::::', value);
     socket.emit(socketRequestKind.newChannel, { name: value });
     closeModal();
-  }
+  };
 
   const renderModal = (kind) => {
     if (!kind) {

@@ -1,4 +1,5 @@
 import {
+  Button,
   FormControl, FormGroup, InputGroup, Modal,
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
@@ -36,7 +37,7 @@ const Add = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Add</Modal.Title>
+        <Modal.Title>Добавление канала</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={formik.handleSubmit}>
@@ -50,7 +51,7 @@ const Add = (props) => {
               onChange={formik.handleChange}
               value={formik.values.body}
               type="text"
-              placeholder="Enter text"
+              placeholder="Введите название канала"
               isInvalid={!!formik.errors.body}
             />
             <FormControl.Feedback type="invalid">
@@ -58,10 +59,10 @@ const Add = (props) => {
             </FormControl.Feedback>
               </InputGroup>
           </FormGroup>
-          <button
+          <Button
             type="submit"
             className="btn btn-primary"
-          >submit</button>
+          >Добавить</Button>
         </form>
       </Modal.Body>
     </Modal>

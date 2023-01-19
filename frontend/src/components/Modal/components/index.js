@@ -1,8 +1,9 @@
 import Add from './Add';
+import Remove from './Remove';
 
 const modals = {
   adding: Add,
-  // removing: Remove,
+  removing: Remove,
   // renaming: Rename,
 };
 

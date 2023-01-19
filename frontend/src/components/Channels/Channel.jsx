@@ -1,19 +1,21 @@
-import { Button, ListGroup } from 'react-bootstrap';
+import { Button, ButtonGroup, DropdownButton, ListGroup, SplitButton, Dropdown } from 'react-bootstrap';
 
 const Channel = ({
   channel, isActive, onDeleteChannel, onChangeChannel,
 }) => {
   const { id, name, removable } = channel;
   return (
-    <ListGroup.Item
-      action
-      active={isActive}
-      onClick={() => onChangeChannel(id)}
-    >
-      <span className="mr-auto">{`# ${name}`}</span>
-      {removable && <Button variant="outline-danger" size="sm" onClick={() => onDeleteChannel(id)}>
-        Удалить
-      </Button>}
+    <ListGroup.Item>
+        <SplitButton
+        as={SplitButton}
+        size="sm"
+        title={`# ${name}`}
+        variant={isActive ? 'primary' : null}
+        onClick={() => onChangeChannel(channel.id)}
+        >
+          <Dropdown.Item>Переименовать</Dropdown.Item>
+          <Dropdown.Item onClick={() => onDeleteChannel(channel.id)}>Удалить</Dropdown.Item>
+        </SplitButton>
     </ListGroup.Item>
   );
 };

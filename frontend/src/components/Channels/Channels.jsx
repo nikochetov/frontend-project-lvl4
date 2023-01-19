@@ -7,14 +7,16 @@ import {
 import Channel from './Channel';
 import { SocketContext } from '../../contexts';
 import socketRequestKind from '../../constants/socket-request-kind';
+import { actions as modalActions } from '../../slices/modalSlice';
 
 const Channels = () => {
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
   const socket = useContext(SocketContext);
 
-  const deleteChannel = (id) => {
-    socket.emit(socketRequestKind.removeChannel, { id });
+  const deleteChannel = () => {
+    dispatch(modalActions.openModal({ kind: 'removing' }));
+    // socket.emit(socketRequestKind.removeChannel, { id });
   };
 
   const changeChannel = (channelId) => {
