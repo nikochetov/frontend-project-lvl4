@@ -14,8 +14,8 @@ const Channels = () => {
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
   const socket = useContext(SocketContext);
 
-  const deleteChannel = () => {
-    dispatch(modalActions.openModal({ kind: 'removing' }));
+  const deleteChannel = (id) => {
+    dispatch(modalActions.openModal({ kind: 'removing', data: id }));
     // socket.emit(socketRequestKind.removeChannel, { id });
   };
 
@@ -30,7 +30,7 @@ const Channels = () => {
           <Channel
             key={channel.id}
             channel={channel}
-            onDeleteChannel={deleteChannel}
+            onDeleteChannel={() => deleteChannel(channel.id)}
             onChangeChannel={changeChannel}
             isActive={channel.id === currentChannelId}
           />

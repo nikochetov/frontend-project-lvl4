@@ -3,7 +3,7 @@ import {
 } from 'react-bootstrap';
 
 const Remove = (props) => {
-  const { onHide, submitModal } = props;
+  const { onHide, submitModal, data } = props;
 
   return (
     <div
@@ -20,7 +20,7 @@ const Remove = (props) => {
 
         <Modal.Footer>
           <Button variant="secondary">Отмена</Button>
-          <Button variant="danger" onClick={() => submitModal()}>Удалить</Button>
+          <Button variant="danger" onClick={() => submitModal(data)}>Удалить</Button>
         </Modal.Footer>
       </Modal>
     </div>
