@@ -18,7 +18,7 @@ const Login = () => {
 
   React.useEffect(() => {
     if (auth.isLoggedIn) {
-      navigate(state?.from || '/private');
+      navigate(state?.from || '/chat');
     }
   }, []);
 
@@ -28,7 +28,7 @@ const Login = () => {
       try {
         const response = await axios.post(routes.loginPath(), values);
         // navigate(state?.from || '/');
-        navigate('/private');
+        navigate('/chat');
         auth.logIn();
         // const { username, token } = response.data;
         localStorage.setItem('user', JSON.stringify(response.data));

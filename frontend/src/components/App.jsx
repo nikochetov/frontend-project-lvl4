@@ -40,7 +40,7 @@ const App = () => (
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotMatch />} />
-        <Route path="/private" element={(
+        <Route path="/chat" element={(
             <PrivateRoute>
               <Chat/>
             </PrivateRoute>
