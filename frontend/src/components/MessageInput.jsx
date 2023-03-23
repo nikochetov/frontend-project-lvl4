@@ -1,12 +1,12 @@
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import { useRef, useEffect, useState } from 'react';
-import sendImage from '../assets/icons/send.svg'
+import React from 'react';
+import sendImage from '../assets/icons/send.svg';
 
 const MessageInput = ({ onFormSubmit }) => {
-  const [formValue, setFormValue] = useState('');
-  const messageInput = useRef(null);
+  const [formValue, setFormValue] = React.useState('');
+  const messageInput = React.useRef(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     messageInput.current.focus();
   }, []);
 

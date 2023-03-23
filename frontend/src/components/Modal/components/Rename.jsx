@@ -4,7 +4,6 @@ import {
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 
 const Rename = (props) => {

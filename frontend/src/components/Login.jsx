@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Formik } from 'formik';
@@ -11,12 +11,12 @@ import { useAuth } from '../hooks';
 
 const Login = () => {
   const auth = useAuth();
-  const [authFailed, setAuthFailed] = useState(false);
+  const [authFailed, setAuthFailed] = React.useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const { state } = location;
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (auth.isLoggedIn) {
       navigate(state?.from || '/private');
     }
