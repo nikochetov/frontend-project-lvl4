@@ -11,7 +11,7 @@ start-frontend:
 	cd frontend && CI=false DISABLE_ESLINT_PLUGIN=true npm run start
 
 lint:
-	cd frontend && npm run lint
+	npx eslint .
 
 test:
 	cd frontend && npm run test
