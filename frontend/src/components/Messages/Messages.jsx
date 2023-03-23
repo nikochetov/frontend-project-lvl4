@@ -4,6 +4,7 @@ import Message from './Message';
 
 const Messages = ({ children }) => {
   const messages = useSelector((state) => state.messagesState.channelMessages);
+  console.log(messages);
 
   return messages && (
     <>

@@ -14,6 +14,7 @@ const messagesSlice = createSlice({
     addMessage: (state, { payload }) => {
       const currentState = state;
       currentState.messages = [...currentState.messages, payload];
+      currentState.channelMessages = [...currentState.channelMessages, payload];
     },
   },
   extraReducers: (builder) => {
@@ -21,6 +22,9 @@ const messagesSlice = createSlice({
       .addCase(getDataThunk.fulfilled, (state, { payload }) => {
         const currentState = state;
         currentState.messages = payload.messages;
+        currentState.channelMessages = currentState.messages.filter(
+          (message) => message.channelId === payload.currentChannelId,
+        );
       })
       .addCase(channelsActions.setCurrentChannelId, (state, { payload }) => {
         const currentState = state;
