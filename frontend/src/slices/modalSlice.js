@@ -16,7 +16,6 @@ const modalSlice = createSlice({
       const { kind, data } = payload;
       currentState.data = data;
       currentState.kind = kind;
-      console.log(current(currentState));
     },
     closeModal: (state) => {
       const currentState = state;
