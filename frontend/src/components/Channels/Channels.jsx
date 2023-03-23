@@ -16,7 +16,7 @@ const Channels = () => {
 
   const deleteChannel = (id) => {
     dispatch(modalActions.openModal({ kind: 'removing', data: id }));
-    // socket.emit(socketRequestKind.removeChannel, { id });
+    socket.emit(socketRequestKind.removeChannel, { id });
   };
 
   const changeChannel = (channelId) => {
