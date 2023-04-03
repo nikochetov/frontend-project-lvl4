@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { AuthContext } from '../contexts';
 import hasToken from '../utils/has-token';
 
@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, logIn, logOut }}>
+    <AuthContext.Provider value={useMemo(() => ({ isLoggedIn, logIn, logOut }), [isLoggedIn])}>
       {children}
     </AuthContext.Provider>
   );

@@ -6,18 +6,21 @@ const Channel = ({
   const { id, name, removable } = channel;
   return (
     <ListGroup.Item>
-        <SplitButton
-        as={'button'}
+      <SplitButton
+        as="button"
         size="sm"
         title={`# ${name}`}
         variant={isActive ? 'primary' : null}
         onClick={() => onChangeChannel(id)}
-        >
-          {removable && <>
-          <Dropdown.Item>Переименовать</Dropdown.Item>
-          <Dropdown.Item onClick={() => onDeleteChannel(id)}>Удалить</Dropdown.Item>
-          </>}
-        </SplitButton>
+      >
+        {removable
+          && (
+            <>
+              <Dropdown.Item>Переименовать</Dropdown.Item>
+              <Dropdown.Item onClick={() => onDeleteChannel(id)}>Удалить</Dropdown.Item>
+            </>
+          )}
+      </SplitButton>
     </ListGroup.Item>
   );
 };

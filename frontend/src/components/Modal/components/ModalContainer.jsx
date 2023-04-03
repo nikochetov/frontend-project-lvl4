@@ -35,7 +35,7 @@ const ModalContainer = () => {
     }
 
     const Component = getModal(kind);
-    return <Component data={data} submitModal={submitModal} onHide={closeModal} isOpen={isOpen}/>;
+    return <Component data={data} submitModal={submitModal} onHide={closeModal} isOpen={isOpen} />;
   };
 
   return renderModal(modalKind);

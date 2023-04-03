@@ -43,26 +43,28 @@ const Add = (props) => {
         <form onSubmit={formik.handleSubmit}>
           <FormGroup className="mb-3">
             <InputGroup hasValidation>
-            <FormControl
-              name="body"
-              required
-              ref={inputEl}
-              data-testid="input-body"
-              onChange={formik.handleChange}
-              value={formik.values.body}
-              type="text"
-              placeholder="Введите название канала"
-              isInvalid={!!formik.errors.body}
-            />
-            <FormControl.Feedback type="invalid">
-              {formik.errors.body || 'Должно быть уникальным'}
-            </FormControl.Feedback>
-              </InputGroup>
+              <FormControl
+                name="body"
+                required
+                ref={inputEl}
+                data-testid="input-body"
+                onChange={formik.handleChange}
+                value={formik.values.body}
+                type="text"
+                placeholder="Введите название канала"
+                isInvalid={!!formik.errors.body}
+              />
+              <FormControl.Feedback type="invalid">
+                {formik.errors.body || 'Должно быть уникальным'}
+              </FormControl.Feedback>
+            </InputGroup>
           </FormGroup>
           <Button
             type="submit"
             className="btn btn-primary"
-          >Добавить</Button>
+          >
+            Добавить
+          </Button>
         </form>
       </Modal.Body>
     </Modal>

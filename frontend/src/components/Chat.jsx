@@ -37,20 +37,21 @@ const Chat = () => {
   };
 
   return (
-    <Container md={10} xxl={6} className='my-4 rounded shadow'>
-      <Row className='h-100 bg-white flex-md-row'>
-        <Col xs={3} xl={2} className='border-end px-0 bg-light'>
-          <div className='bg-light mb-4 p-3 small d-flex justify-content-between align-items-center'><div><span>Каналы</span></div>
-            <Button variant="light" className='p-0 text-primary btn btn-group-vertical' onClick={addChannel}>
-              <img src={addChannelIcon} style={{ width: '30px', color: '#0d6efd' }} alt="Добавить канал"/>
+    <Container md={10} xxl={6} className="my-4 rounded shadow">
+      <Row className="h-100 bg-white flex-md-row">
+        <Col xs={3} xl={2} className="border-end px-0 bg-light">
+          <div className="bg-light mb-4 p-3 small d-flex justify-content-between align-items-center">
+            <div><span>Каналы</span></div>
+            <Button variant="light" className="p-0 text-primary btn btn-group-vertical" onClick={addChannel}>
+              <img src={addChannelIcon} style={{ width: '30px', color: '#0d6efd' }} alt="Добавить канал" />
             </Button>
           </div>
           <Channels />
         </Col>
-        <Col xs={9} xxl={6} className='p-0'>
-          <div className='bg-light mb-4 p-3 shadow-sm small'><span>Сообщения</span></div>
-          <div className='chat-messages overflow-hidden px-5'>
-          <Messages><MessageInput onFormSubmit={clickButton}/></Messages>
+        <Col xs={9} xxl={6} className="p-0">
+          <div className="bg-light mb-4 p-3 shadow-sm small"><span>Сообщения</span></div>
+          <div className="chat-messages overflow-hidden px-5">
+            <Messages><MessageInput onFormSubmit={clickButton} /></Messages>
           </div>
         </Col>
       </Row>

@@ -29,24 +29,27 @@ const AuthButton = () => {
 };
 
 const App = () => (
-    <Router>
-      <Navbar bg="light" expand="lg" className='shadow'>
-        <Container xs={9} xl={8}>
-          <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
-          <AuthButton />
-        </Container>
-      </Navbar>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="*" element={<NotMatch />} />
-        <Route path="/chat" element={(
-            <PrivateRoute>
-              <Chat/>
-            </PrivateRoute>
-        )} />
-      </Routes>
-    </Router>
+  <Router>
+    <Navbar bg="light" expand="lg" className="shadow">
+      <Container xs={9} xl={8}>
+        <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
+        <AuthButton />
+      </Container>
+    </Navbar>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="*" element={<NotMatch />} />
+      <Route
+        path="/chat"
+        element={(
+          <PrivateRoute>
+            <Chat />
+          </PrivateRoute>
+      )}
+      />
+    </Routes>
+  </Router>
 );
 
 export default App;

@@ -57,7 +57,9 @@ const Rename = (props) => {
           <Button
             type="submit"
             className="btn btn-primary"
-          >Добавить</Button>
+          >
+            Добавить
+          </Button>
         </form>
       </Modal.Body>
     </Modal>

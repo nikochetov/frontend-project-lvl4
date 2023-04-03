@@ -32,7 +32,7 @@ const MessageInput = ({ onFormSubmit }) => {
         id="button-addon2"
         onClick={() => submitForm()}
       >
-        <img src={sendImage} alt='Send message' placeholder='Отправить сообщение'/>
+        <img src={sendImage} alt="Send message" placeholder="Отправить сообщение" />
       </Button>
     </InputGroup>
   );

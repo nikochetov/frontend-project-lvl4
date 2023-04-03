@@ -9,7 +9,7 @@ const Messages = ({ children }) => {
     <>
       <ListGroup variant="flush" className="list-group">
         {messages.map(({ id, body, username }) => (
-          <Message key={id} body={body} author={username}/>
+          <Message key={id} body={body} author={username} />
         ))}
       </ListGroup>
       {children}
