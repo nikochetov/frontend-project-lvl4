@@ -59,12 +59,15 @@ const Add = (props) => {
               </FormControl.Feedback>
             </InputGroup>
           </FormGroup>
-          <Button
-            type="submit"
-            className="btn btn-primary"
-          >
-            Добавить
-          </Button>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => onHide()}>Отмена</Button>
+            <Button
+              type="submit"
+              className="btn btn-primary"
+            >
+              Добавить
+            </Button>
+          </Modal.Footer>
         </form>
       </Modal.Body>
     </Modal>

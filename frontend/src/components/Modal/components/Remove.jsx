@@ -19,7 +19,7 @@ const Remove = (props) => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary">Отмена</Button>
+          <Button variant="secondary" onClick={() => onHide()}>Отмена</Button>
           <Button variant="danger" onClick={() => submitModal(data)}>Удалить</Button>
         </Modal.Footer>
       </Modal>
