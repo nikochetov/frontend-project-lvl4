@@ -1,22 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { ListGroup } from 'react-bootstrap';
-import { useContext } from 'react';
 import {
   actions as channelsActions,
 } from '../../slices/channelsSlice';
 import Channel from './Channel';
-import { SocketContext } from '../../contexts';
-import socketRequestKind from '../../constants/socket-request-kind';
 import { actions as modalActions } from '../../slices/modalSlice';
 
 const Channels = () => {
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
-  const socket = useContext(SocketContext);
 
   const deleteChannel = (id) => {
     dispatch(modalActions.openModal({ kind: 'removing', data: id }));
-    socket.emit(socketRequestKind.removeChannel, { id });
   };
 
   const changeChannel = (channelId) => {
