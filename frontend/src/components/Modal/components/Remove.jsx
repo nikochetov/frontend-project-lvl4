@@ -15,7 +15,12 @@ const Remove = (props) => {
         </Modal.Header>
 
         <Modal.Body>
-          <p>Вы действительно хотите удалить канал?</p>
+          <p>
+            Вы действительно хотите удалить канал
+            {' '}
+            <b>{data.name}</b>
+            ?
+          </p>
         </Modal.Body>
 
         <Modal.Footer>

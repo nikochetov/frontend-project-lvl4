@@ -14,6 +14,10 @@ const Channels = () => {
     dispatch(modalActions.openModal({ kind: 'removing', data: id }));
   };
 
+  const renameChannel = (id) => {
+    dispatch(modalActions.openModal({ kind: 'renaming', data: id }));
+  };
+
   const changeChannel = (channelId) => {
     dispatch(channelsActions.setCurrentChannelId(channelId));
   };
@@ -25,7 +29,8 @@ const Channels = () => {
           <Channel
             key={channel.id}
             channel={channel}
-            onDeleteChannel={() => deleteChannel(channel.id)}
+            onDeleteChannel={() => deleteChannel(channel)}
+            onRenameChannel={() => renameChannel(channel)}
             onChangeChannel={changeChannel}
             isActive={channel.id === currentChannelId}
           />

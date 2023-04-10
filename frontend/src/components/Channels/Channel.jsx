@@ -1,7 +1,7 @@
 import { ListGroup, SplitButton, Dropdown } from 'react-bootstrap';
 
 const Channel = ({
-  channel, isActive, onDeleteChannel, onChangeChannel,
+  channel, isActive, onDeleteChannel, onChangeChannel, onRenameChannel,
 }) => {
   const { id, name, removable } = channel;
   return (
@@ -16,7 +16,7 @@ const Channel = ({
         {removable
           && (
             <>
-              <Dropdown.Item>Переименовать</Dropdown.Item>
+              <Dropdown.Item onClick={() => onRenameChannel(id)}>Переименовать</Dropdown.Item>
               <Dropdown.Item onClick={() => onDeleteChannel(id)}>Удалить</Dropdown.Item>
             </>
           )}

@@ -17,7 +17,7 @@ const ModalContainer = () => {
   const submitModal = (value) => {
     const actionsMapping = {
       adding: () => socket.emit(socketRequestKind.newChannel, { name: value }),
-      removing: () => socket.emit(socketRequestKind.removeChannel, { id: value }),
+      removing: () => socket.emit(socketRequestKind.removeChannel, { id: value.id }),
       renaming: () => socket.emit(
         socketRequestKind.renameChannel,
         { id: value.id, name: value.name },
