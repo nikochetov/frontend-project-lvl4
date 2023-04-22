@@ -6,4 +6,4 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/42df1053230adc32006d/test_coverage)](https://codeclimate.com/github/nikochetov/frontend-project-lvl4/test_coverage)
 
 ##### Project URL:
-https://awesome-chat-project.herokuapp.com/
+https://shlack-chat.vercel.app/
