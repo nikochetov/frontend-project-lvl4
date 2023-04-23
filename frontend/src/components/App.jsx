@@ -31,7 +31,7 @@ const AuthButton = () => {
 const App = () => (
   <Router>
     <Navbar bg="light" expand="lg" className="shadow">
-      <Container xs={9} xl={8}>
+      <Container>
         <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
         <AuthButton />
       </Container>

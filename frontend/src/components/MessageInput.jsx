@@ -1,6 +1,7 @@
 import { Button, Form, InputGroup } from 'react-bootstrap';
 import React from 'react';
 import { useFormik } from 'formik';
+import * as yup from 'yup';
 import sendImage from '../assets/icons/send.svg';
 
 const MessageInput = ({ onFormSubmit }) => {
@@ -12,7 +13,11 @@ const MessageInput = ({ onFormSubmit }) => {
     },
     onSubmit: (values) => {
       onFormSubmit(values.message);
+      formik.setValues({ message: '' });
     },
+    validationSchema: yup.object().shape({
+      message: yup.string().required('Required'),
+    }),
   });
 
   React.useEffect(() => {
@@ -24,7 +29,7 @@ const MessageInput = ({ onFormSubmit }) => {
   };
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit} className="position-absolute bottom-0">
       <Form.Group controlId="message">
         <InputGroup className="mt-3 mb-3">
           <Form.Control

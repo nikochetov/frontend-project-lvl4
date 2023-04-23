@@ -37,8 +37,8 @@ const Chat = () => {
   };
 
   return (
-    <Container md={10} xxl={6} className="my-4 rounded shadow">
-      <Row className="h-100 bg-white flex-md-row">
+    <Container className="my-4 rounded shadow" md={6} style={{ height: '85vh' }}>
+      <Row className="h-100 bg-white justify-content-md-center">
         <Col xs={3} xl={2} className="border-end px-0 bg-light">
           <div className="bg-light mb-4 p-3 small d-flex justify-content-between align-items-center">
             <div><span>Каналы</span></div>
@@ -48,9 +48,9 @@ const Chat = () => {
           </div>
           <Channels />
         </Col>
-        <Col xs={9} xxl={6} className="p-0">
-          <div className="bg-light mb-4 p-3 shadow-sm small"><span>Сообщения</span></div>
-          <div className="chat-messages overflow-hidden px-5">
+        <Col className="p-0 h-100 position-relative">
+          <div className="bg-light  p-3 shadow-sm small"><span>Сообщения</span></div>
+          <div className="chat-messages overflow-scroll px-5 mt-2" style={{ height: '80%' }}>
             <Messages><MessageInput onFormSubmit={clickButton} /></Messages>
           </div>
         </Col>

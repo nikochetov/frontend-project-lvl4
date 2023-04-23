@@ -7,7 +7,7 @@ const Messages = ({ children }) => {
 
   return messages && (
     <>
-      <ListGroup variant="flush" className="list-group">
+      <ListGroup variant="flush" className="list-group overflow-hidden">
         {messages.map(({ id, body, username }) => (
           <Message key={id} body={body} author={username} />
         ))}
