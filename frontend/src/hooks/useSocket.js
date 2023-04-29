@@ -10,12 +10,14 @@ const useSocket = (socket) => {
   });
   socket.on(socketRequestKind.newChannel, (ev) => {
     dispatch(channelsActions.addChannel(ev));
+    dispatch(channelsActions.setCurrentChannelId(ev.id));
   });
   socket.on(socketRequestKind.renameChannel, (ev) => {
     dispatch(channelsActions.renameChannel(ev));
   });
   socket.on(socketRequestKind.removeChannel, (ev) => {
     dispatch(channelsActions.removeChannel(ev));
+    dispatch(channelsActions.setCurrentChannelId(1));
   });
 
   return socket;
