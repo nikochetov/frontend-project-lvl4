@@ -13,6 +13,7 @@ import { actions as channelsActions } from '../slices/channelsSlice';
 import socketRequestKind from '../constants/socket-request-kind';
 import ModalContainer from './Modal/components/ModalContainer';
 import { actions as modalActions } from '../slices/modalSlice';
+import modalKind from '../constants/modal-kind';
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Chat = () => {
   }, []);
 
   const addChannel = () => {
-    dispatch(modalActions.openModal({ kind: 'adding' }));
+    dispatch(modalActions.openModal({ kind: modalKind.add }));
   };
 
   const clickButton = (message) => {

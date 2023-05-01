@@ -5,17 +5,18 @@ import {
 } from '../../slices/channelsSlice';
 import Channel from './Channel';
 import { actions as modalActions } from '../../slices/modalSlice';
+import modalKind from '../../constants/modal-kind';
 
 const Channels = () => {
   const dispatch = useDispatch();
   const { channels, currentChannelId } = useSelector((state) => state.channelsState);
 
   const deleteChannel = (id) => {
-    dispatch(modalActions.openModal({ kind: 'removing', data: id }));
+    dispatch(modalActions.openModal({ kind: modalKind.remove, data: id }));
   };
 
   const renameChannel = (id) => {
-    dispatch(modalActions.openModal({ kind: 'renaming', data: id }));
+    dispatch(modalActions.openModal({ kind: modalKind.rename, data: id }));
   };
 
   const changeChannel = (channelId) => {
