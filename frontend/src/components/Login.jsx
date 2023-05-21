@@ -101,6 +101,7 @@ const Login = () => {
                 </Form.Control.Feedback>
               </Form.Group>
               <Button type="submit">Войти</Button>
+              <Button variant="link">Регистрация</Button>
             </Form>
           </Card.Body>
         </Card>
