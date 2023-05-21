@@ -61,14 +61,14 @@ const Login = () => {
               <Form.Group>
                 <FloatingLabel
                   controlId="floatingInput"
-                  label="Username"
+                  label="Логин"
                   className="mb-3"
                 >
                   <Form.Control
                     name="username"
                     required
                     type="text"
-                    placeholder="Enter username"
+                    placeholder="Введите логин"
                     value={values.username}
                     onChange={handleChange}
                     isInvalid={authFailed}
@@ -82,7 +82,7 @@ const Login = () => {
               <Form.Group>
                 <FloatingLabel
                   controlId="floatingInput"
-                  label="Password"
+                  label="Пароль"
                   className="mb-3"
                 >
                   <Form.Control
@@ -91,7 +91,7 @@ const Login = () => {
                     type="text"
                     value={values.password}
                     onChange={handleChange}
-                    placeholder="Enter password"
+                    placeholder="Введите пароль"
                     isInvalid={authFailed}
                     isValid={touched.password && !authFailed}
                   />
@@ -100,7 +100,7 @@ const Login = () => {
                   {errors.password}
                 </Form.Control.Feedback>
               </Form.Group>
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Войти</Button>
             </Form>
           </Card.Body>
         </Card>
