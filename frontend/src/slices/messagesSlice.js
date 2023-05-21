@@ -35,7 +35,7 @@ const messagesSlice = createSlice({
       .addCase(channelsActions.removeChannel, (state, { payload }) => {
         const currentState = state;
         currentState.messages = currentState.messages.filter(
-          (message) => message.channelId === payload,
+          (message) => message.channelId !== payload,
         );
       });
   },
