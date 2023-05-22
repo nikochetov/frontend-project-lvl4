@@ -19,12 +19,11 @@ const PrivateRoute = ({ children }) => {
 
 const AuthButton = () => {
   const auth = useAuth();
-  const location = useLocation();
 
   return (
     auth.isLoggedIn
       ? <Button onClick={auth.logOut}>Выйти</Button>
-      : <Button as={Link} to="/login" state={{ from: location }}>Войти</Button>
+      : null
   );
 };
 
