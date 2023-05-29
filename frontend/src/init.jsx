@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import resources from './locales';
 import store from './slices';
 import App from './components/App';
-import { AuthProvider, SocketProvider, UserProvider } from './providers';
+import { AuthProvider, UserProvider } from './providers';
 
 const init = async () => {
   const i18n = i18next.createInstance();
@@ -15,9 +15,7 @@ const init = async () => {
       <I18nextProvider i18n={i18n}>
         <UserProvider>
           <AuthProvider>
-            <SocketProvider>
-              <App />
-            </SocketProvider>
+            <App />
           </AuthProvider>
         </UserProvider>
       </I18nextProvider>

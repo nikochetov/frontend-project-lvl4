@@ -1,8 +1,14 @@
 import * as yup from 'yup';
 
 const authFormSchema = () => yup.object().shape({
-  username: yup.string().min(3, 'Too short').max(50, 'Too long').required('Required'),
-  password: yup.string().min(3, 'Too short').max(50, 'Too long').required('Required'),
+  username: yup.string()
+    .min(3, 'Не менее 3х символов')
+    .max(50, 'Не более 50 символов')
+    .required('Обязательное поле'),
+  password: yup.string()
+    .min(3, 'Не менее 3х символов')
+    .max(50, 'Не более 50 символов')
+    .required('Обязательное поле'),
 });
 
 export default authFormSchema;

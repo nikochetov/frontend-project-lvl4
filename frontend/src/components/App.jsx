@@ -3,10 +3,11 @@ import {
   Route, BrowserRouter as Router, Routes, useLocation, Navigate, Link,
 } from 'react-router-dom';
 import { Button, Container, Navbar } from 'react-bootstrap';
-import Login from './Login.jsx';
 import NotMatch from './NotMatch.jsx';
 import Chat from './Chat';
 import { useAuth } from '../hooks';
+import { SocketProvider } from '../providers';
+import Login from './Login/Login';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -43,7 +44,9 @@ const App = () => (
         path="/chat"
         element={(
           <PrivateRoute>
-            <Chat />
+            <SocketProvider>
+              <Chat />
+            </SocketProvider>
           </PrivateRoute>
       )}
       />
