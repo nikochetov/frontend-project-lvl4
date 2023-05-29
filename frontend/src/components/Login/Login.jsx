@@ -2,7 +2,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Formik } from 'formik';
-import { Button, Card } from 'react-bootstrap';
+import { Alert, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import authFormSchema from '../../validators/auth-form-validator';
@@ -38,8 +38,7 @@ const Login = () => {
     login();
   };
 
-  const formChange = (value) => {
-    console.log(value);
+  const formChange = () => {
     setAuthFailed(false);
   };
 
@@ -100,6 +99,7 @@ const Login = () => {
                   </Form.Control.Feedback>
                 </FloatingLabel>
               </Form.Group>
+              {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
               <Button type="submit">Войти</Button>
               <Button variant="link">Регистрация</Button>
             </Form>
