@@ -1,7 +1,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Formik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import { Alert, Button, Card } from 'react-bootstrap';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -42,71 +42,69 @@ const Login = () => {
     setAuthFailed(false);
   };
 
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    validationSchema: authFormSchema,
+    validateOnChange: false,
+    onSubmit: (values) => {
+      submit(values);
+    },
+  });
+
   return (
-    <Formik
-      validationSchema={authFormSchema}
-      validateOnChange={false}
-      initialValues={{ username: '', password: '' }}
-      onSubmit={(values) => submit(values)}
-    >
-      {({
-        handleSubmit,
-        handleChange,
-        values,
-        errors,
-      }) => (
-        <Card className="mt-5 col-md-7 col-sm-10 mx-auto">
-          <Card.Header>Авторизация</Card.Header>
-          <Card.Body>
-            <Form onSubmit={handleSubmit} onChange={() => formChange(errors)} noValidate>
-              <Form.Group>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Логин"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    name="username"
-                    required
-                    type="text"
-                    placeholder="Введите логин"
-                    value={values.username}
-                    onChange={handleChange}
-                    isInvalid={!!errors.username}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors?.username}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
-              </Form.Group>
-              <Form.Group>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Пароль"
-                  className="mb-3"
-                >
-                  <Form.Control
-                    name="password"
-                    required
-                    type="text"
-                    value={values.password}
-                    onChange={handleChange}
-                    placeholder="Введите пароль"
-                    isInvalid={!!errors.password}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    {errors?.password}
-                  </Form.Control.Feedback>
-                </FloatingLabel>
-              </Form.Group>
-              {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
-              <Button type="submit">Войти</Button>
-              <Button variant="link">Регистрация</Button>
-            </Form>
-          </Card.Body>
-        </Card>
-      )}
-    </Formik>
+    <Card className="mt-5 col-md-7 col-sm-10 mx-auto">
+      <Card.Header>Авторизация</Card.Header>
+      <Card.Body>
+        <Form onSubmit={formik.handleSubmit} onChange={() => formChange(formik.errors)} noValidate>
+          <Form.Group>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Логин"
+              className="mb-3"
+            >
+              <Form.Control
+                name="username"
+                required
+                type="text"
+                placeholder="Введите логин"
+                value={formik.values.username}
+                onChange={formik.handleChange}
+                isInvalid={!!formik.errors.username}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors?.username}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          <Form.Group>
+            <FloatingLabel
+              controlId="floatingInput"
+              label="Пароль"
+              className="mb-3"
+            >
+              <Form.Control
+                name="password"
+                required
+                type="text"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                placeholder="Введите пароль"
+                isInvalid={!!formik.errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formik.errors?.password}
+              </Form.Control.Feedback>
+            </FloatingLabel>
+          </Form.Group>
+          {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
+          <Button type="submit">Войти</Button>
+          <Button variant="link">Регистрация</Button>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 };
 
