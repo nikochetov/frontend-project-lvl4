@@ -1,9 +1,13 @@
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Button } from 'react-bootstrap';
+import { Alert, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
+import useSubmit from '../../../hooks/useSubmit';
+import signupFormSchema from '../../../validators/signup-form-validator';
 
 const SignupForm = () => {
+  const { failed, submit } = useSubmit('signup');
+
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -11,8 +15,10 @@ const SignupForm = () => {
       passwordConfirmation: '',
     },
     validateOnChange: false,
+    validationSchema: signupFormSchema,
     onSubmit: (values) => {
-      console.log(values);
+      const { username, password } = values;
+      submit({ username, password });
     },
   });
 
@@ -78,7 +84,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {/* {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>} */}
+      {failed && <Alert variant="danger">Пользователь уже существует</Alert>}
       <Button type="submit">Регистрация</Button>
       <Button variant="link" href="/login">Войти</Button>
     </Form>

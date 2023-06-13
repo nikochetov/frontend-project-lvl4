@@ -4,10 +4,10 @@ import { Alert, Button } from 'react-bootstrap';
 import React from 'react';
 import { useFormik } from 'formik';
 import authFormSchema from '../../../validators/auth-form-validator';
-import useLoginSubmit from '../../../hooks/useLoginSubmit';
+import useSubmit from '../../../hooks/useSubmit';
 
 const LoginForm = () => {
-  const { authFailed, submit } = useLoginSubmit();
+  const { failed, submit } = useSubmit('login');
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +63,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
+      {failed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
       <Button type="submit">Войти</Button>
       <Button variant="link" href="/signup">Регистрация</Button>
     </Form>
