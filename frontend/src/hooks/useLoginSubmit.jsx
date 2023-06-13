@@ -1,8 +1,7 @@
-import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import routes from '../routes';
 import { useAuth } from './index';
+import loginRequest from '../services/login-service';
 
 const useLoginSubmit = () => {
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ const useLoginSubmit = () => {
     setAuthFailed(false);
     const login = async () => {
       try {
-        const response = await axios.post(routes.loginPath(), values);
+        const response = await loginRequest(values);
         navigate('/chat');
         auth.logIn();
         localStorage.setItem('user', JSON.stringify(response.data));
