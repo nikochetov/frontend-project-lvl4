@@ -1,6 +1,9 @@
-const apiPath = '/api/v1';
+import { buildPath } from './utils';
+import API_PATH from './constants/API_PATH';
+import Paths from './constants/Paths';
 
 export default {
-  loginPath: () => [apiPath, 'login'].join('/'),
-  dataPath: () => [apiPath, 'data'].join('/'),
+  loginPath: () => buildPath(API_PATH, Paths.login),
+  signupPath: () => buildPath(API_PATH, Paths.signup),
+  dataPath: () => buildPath(API_PATH, Paths.data),
 };
