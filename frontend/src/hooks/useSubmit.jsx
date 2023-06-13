@@ -7,21 +7,25 @@ import signupRequest from '../services/signup-service';
 const useSubmit = (action) => {
   const navigate = useNavigate();
   const auth = useAuth();
-  const [submitFailed, setSubmitFailed] = React.useState(false);
+  const [errors, setErrors] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(false);
 
   const submit = async (values) => {
-    setSubmitFailed(false);
+    setErrors([]);
+    setLoading(true);
     try {
       const response = await (action === 'login' ? loginRequest(values) : signupRequest(values));
       navigate('/chat');
       auth.logIn();
       localStorage.setItem('user', JSON.stringify(response.data));
+      setLoading(false);
     } catch (err) {
-      setSubmitFailed(true);
+      setErrors([...errors, err]);
+      setLoading(false);
     }
   };
 
-  return { submitFailed, submit };
+  return { isLoading, errors, submit };
 };
 
 export default useSubmit;
