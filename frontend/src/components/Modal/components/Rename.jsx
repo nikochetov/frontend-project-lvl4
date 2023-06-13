@@ -4,10 +4,12 @@ import {
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
-import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
+import { renameChannelSchema } from '../../../validators';
 
 const Rename = (props) => {
   const { onHide, submitModal, data } = props;
+  const { t } = useTranslation();
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -18,12 +20,7 @@ const Rename = (props) => {
     initialValues: {
       body: data.name,
     },
-    validationSchema: yup.object().shape({
-      body: yup.string()
-        .min(3, 'От 3 до 20 символов')
-        .max(20, 'От 3 до 20 символов')
-        .required('Обязательное поле'),
-    }),
+    validationSchema: renameChannelSchema(t),
     onSubmit: (values) => {
       submitModal({ name: values.body, id: data.id });
     },

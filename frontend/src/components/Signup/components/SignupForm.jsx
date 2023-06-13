@@ -4,7 +4,7 @@ import { Alert, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import useSubmit from '../../../hooks/useSubmit';
-import signupFormSchema from '../../../validators/signup-form-validator';
+import signupFormSchema from '../../../validators/signup-form-schema';
 
 const SignupForm = () => {
   const { error, submit } = useSubmit('signup');
@@ -17,7 +17,7 @@ const SignupForm = () => {
       passwordConfirmation: '',
     },
     validateOnChange: false,
-    validationSchema: signupFormSchema,
+    validationSchema: signupFormSchema(t),
     onSubmit: (values) => {
       const { username, password } = values;
       submit({ username, password });

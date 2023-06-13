@@ -2,11 +2,11 @@ import { Button, Form, InputGroup } from 'react-bootstrap';
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import sendImage from '../assets/icons/send.svg';
 import { useTranslation } from 'react-i18next';
+import sendImage from '../assets/icons/send.svg';
 
 const MessageInput = ({ onFormSubmit }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   const messageInput = React.useRef(null);
 
   const formik = useFormik({

@@ -35,5 +35,13 @@ export default {
       rename: 'Переименовать',
       remove: 'Удалить',
     },
+    validation: {
+      range: 'От {{from}} до {{to}} символов',
+      min: 'Не менее {{count}} символов',
+      max: 'Не более {{count}} символов',
+      notEqualPasswords: 'Пароли должны совпадать',
+      required: 'Обязательное поле',
+      channelExist: 'Канал уже существует',
+    },
   },
 };

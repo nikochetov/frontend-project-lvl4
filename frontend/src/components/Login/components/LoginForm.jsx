@@ -4,7 +4,7 @@ import { Alert, Button } from 'react-bootstrap';
 import React from 'react';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import authFormSchema from '../../../validators/auth-form-validator';
+import authFormSchema from '../../../validators/auth-form-schema';
 import useSubmit from '../../../hooks/useSubmit';
 
 const LoginForm = () => {
@@ -16,7 +16,7 @@ const LoginForm = () => {
       username: '',
       password: '',
     },
-    validationSchema: authFormSchema,
+    validationSchema: authFormSchema(t),
     validateOnChange: false,
     onSubmit: (values) => {
       submit(values);

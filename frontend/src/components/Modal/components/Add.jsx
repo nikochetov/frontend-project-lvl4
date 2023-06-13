@@ -6,11 +6,14 @@ import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
+import addChannelSchema from '../../../validators/add-channel-schema';
 
 const Add = (props) => {
   const { onHide, submitModal } = props;
   const inputEl = useRef(null);
-  const { channels } = useSelector((state) => state.channelsState);
+  const { t } = useTranslation();
+  const { channelsNames } = useSelector((state) => state.channelsState);
 
   useEffect(() => {
     inputEl.current.focus();
@@ -21,13 +24,7 @@ const Add = (props) => {
       body: '',
     },
     validationSchema: yup.object().shape({
-      body: yup.string()
-        .min(3, 'От 3 до 20 символов')
-        .max(20, 'От 3 до 20 символов')
-        .required('Обязательное поле')
-        .test('Unique', 'Должно быть уникальным', (value) => !channels
-          .map((channel) => channel.name)
-          .some((channelName) => channelName === value)),
+      body: addChannelSchema(t, channelsNames),
     }),
     onSubmit: (values) => {
       submitModal(values.body);
