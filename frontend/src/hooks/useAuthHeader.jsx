@@ -4,7 +4,7 @@ import authHeader from '../constants/auth-header';
 const useAuthHeader = () => {
   const location = useLocation();
   const pathName = location.pathname.slice(1);
-  return authHeader[pathName];
+  return authHeader[pathName.length ? pathName : 'login'];
 };
 
 export default useAuthHeader;

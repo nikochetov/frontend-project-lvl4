@@ -1,23 +1,18 @@
 import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
-import { Alert, Button } from 'react-bootstrap';
-import React from 'react';
+import { Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import authFormSchema from '../../../validators/auth-form-validator';
-import useLoginSubmit from '../../../hooks/useLoginSubmit';
 
-const LoginForm = () => {
-  const { authFailed, submit } = useLoginSubmit();
-
+const SignupForm = () => {
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
+      passwordConfirmation: '',
     },
-    validationSchema: authFormSchema,
     validateOnChange: false,
     onSubmit: (values) => {
-      submit(values);
+      console.log(values);
     },
   });
 
@@ -63,11 +58,31 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
-      <Button type="submit">Войти</Button>
-      <Button variant="link" href="/signup">Регистрация</Button>
+      <Form.Group>
+        <FloatingLabel
+          controlId="floatingInput"
+          label="Подтверждение пароля"
+          className="mb-3"
+        >
+          <Form.Control
+            name="passwordConfirmation"
+            required
+            type="text"
+            value={formik.values.passwordConfirmation}
+            onChange={formik.handleChange}
+            placeholder="Введите пароль"
+            isInvalid={!!formik.errors.passwordConfirmation}
+          />
+          <Form.Control.Feedback type="invalid">
+            {formik.errors?.passwordConfirmation}
+          </Form.Control.Feedback>
+        </FloatingLabel>
+      </Form.Group>
+      {/* {authFailed && <Alert variant="danger">Неверный логин и/или пароль</Alert>} */}
+      <Button type="submit">Регистрация</Button>
+      <Button variant="link" href="/login">Войти</Button>
     </Form>
   );
 };
 
-export default LoginForm;
+export default SignupForm;

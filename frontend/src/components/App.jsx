@@ -7,7 +7,8 @@ import NotMatch from './NotMatch.jsx';
 import Chat from './Chat';
 import { useAuth } from '../hooks';
 import { SocketProvider } from '../providers';
-import Login from './Login/Login';
+import Login from './Login/components/Login';
+import Signup from './Signup/components/Signup';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -39,6 +40,7 @@ const App = () => (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="*" element={<NotMatch />} />
       <Route
         path="/chat"

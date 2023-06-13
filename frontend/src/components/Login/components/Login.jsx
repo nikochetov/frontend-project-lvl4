@@ -1,8 +1,8 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../hooks';
-import AuthContainer from '../AuthContainer';
-import LoginForm from './components/LoginForm';
+import { useAuth } from '../../../hooks';
+import AuthContainer from '../../AuthContainer';
+import LoginForm from './LoginForm';
 
 const Login = () => {
   const auth = useAuth();
