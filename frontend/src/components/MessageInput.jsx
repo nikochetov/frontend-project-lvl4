@@ -3,8 +3,10 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import sendImage from '../assets/icons/send.svg';
+import { useTranslation } from 'react-i18next';
 
 const MessageInput = ({ onFormSubmit }) => {
+  const { t } = useTranslation()
   const messageInput = React.useRef(null);
 
   const formik = useFormik({
@@ -34,9 +36,8 @@ const MessageInput = ({ onFormSubmit }) => {
         <InputGroup className="mt-3 mb-3">
           <Form.Control
             ref={messageInput}
-            placeholder="Введите сообщение..."
-            aria-label="Введите сообщение..."
-            aria-describedby="basic-addon2"
+            placeholder={t('messages.enterMessage')}
+            aria-label={t('messages.enterMessage')}
             name="message"
             onChange={formik.handleChange}
             value={formik.values.message}
@@ -47,7 +48,7 @@ const MessageInput = ({ onFormSubmit }) => {
             id="button-addon2"
             onClick={() => submitForm()}
           >
-            <img src={sendImage} alt="Send message" placeholder="Отправить сообщение" />
+            <img src={sendImage} alt="Send message" placeholder={t('actions.messages.sendMessage')} />
           </Button>
         </InputGroup>
       </Form.Group>

@@ -3,11 +3,13 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Alert, Button } from 'react-bootstrap';
 import React from 'react';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import authFormSchema from '../../../validators/auth-form-validator';
 import useSubmit from '../../../hooks/useSubmit';
 
 const LoginForm = () => {
   const { error, submit } = useSubmit('login');
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -26,14 +28,14 @@ const LoginForm = () => {
       <Form.Group>
         <FloatingLabel
           controlId="floatingInput"
-          label="Логин"
+          label={t('authForm.username')}
           className="mb-3"
         >
           <Form.Control
             name="username"
             required
             type="text"
-            placeholder="Введите логин"
+            placeholder={t('authForm.placeholder.enterUsername')}
             value={formik.values.username}
             onChange={formik.handleChange}
             isInvalid={!!formik.errors.username}
@@ -46,7 +48,7 @@ const LoginForm = () => {
       <Form.Group>
         <FloatingLabel
           controlId="floatingInput"
-          label="Пароль"
+          label={t('authForm.password')}
           className="mb-3"
         >
           <Form.Control
@@ -55,7 +57,7 @@ const LoginForm = () => {
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
-            placeholder="Введите пароль"
+            placeholder={t('authForm.placeholder.enterPassword')}
             isInvalid={!!formik.errors.password}
           />
           <Form.Control.Feedback type="invalid">
@@ -63,9 +65,9 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {error?.response.status === 401 && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
-      <Button type="submit">Войти</Button>
-      <Button variant="link" href="/signup">Регистрация</Button>
+      {error?.response.status === 401 && <Alert variant="danger">{t('authForm.errors.wrongUsernameOrPassword')}</Alert>}
+      <Button type="submit">{t('authForm.login')}</Button>
+      <Button variant="link" href="/signup">{t('authForm.register')}</Button>
     </Form>
   );
 };

@@ -1,11 +1,13 @@
 import {
   ListGroup, Dropdown, ButtonGroup, Button,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const Channel = ({
   channel, isActive, onDeleteChannel, onChangeChannel, onRenameChannel,
 }) => {
   const { id, name, removable } = channel;
+  const { t } = useTranslation();
   return (
     <ListGroup.Item>
       <Dropdown as={ButtonGroup}>
@@ -16,8 +18,8 @@ const Channel = ({
           <Dropdown.Toggle split variant={isActive ? 'primary' : null} id="dropdown-split-basic" />
 
           <Dropdown.Menu>
-            <Dropdown.Item onClick={() => onRenameChannel(id)}>Переименовать</Dropdown.Item>
-            <Dropdown.Item onClick={() => onDeleteChannel(id)} style={{ color: '#dc3545' }}>Удалить</Dropdown.Item>
+            <Dropdown.Item onClick={() => onRenameChannel(id)}>{t('actions.rename')}</Dropdown.Item>
+            <Dropdown.Item onClick={() => onDeleteChannel(id)} style={{ color: '#dc3545' }}>{t('actions.remove')}</Dropdown.Item>
           </Dropdown.Menu>
         </>
         )}

@@ -2,11 +2,13 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Alert, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import useSubmit from '../../../hooks/useSubmit';
 import signupFormSchema from '../../../validators/signup-form-validator';
 
 const SignupForm = () => {
   const { error, submit } = useSubmit('signup');
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -27,14 +29,14 @@ const SignupForm = () => {
       <Form.Group>
         <FloatingLabel
           controlId="floatingInput"
-          label="Логин"
+          label={t('authForm.username')}
           className="mb-3"
         >
           <Form.Control
             name="username"
             required
             type="text"
-            placeholder="Введите логин"
+            placeholder={t('authForm.placeholder.username')}
             value={formik.values.username}
             onChange={formik.handleChange}
             isInvalid={!!formik.errors.username}
@@ -47,7 +49,7 @@ const SignupForm = () => {
       <Form.Group>
         <FloatingLabel
           controlId="floatingInput"
-          label="Пароль"
+          label={t('authForm.password')}
           className="mb-3"
         >
           <Form.Control
@@ -56,7 +58,7 @@ const SignupForm = () => {
             type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
-            placeholder="Введите пароль"
+            placeholder={t('authForm.placeholder.password')}
             isInvalid={!!formik.errors.password}
           />
           <Form.Control.Feedback type="invalid">
@@ -67,7 +69,7 @@ const SignupForm = () => {
       <Form.Group>
         <FloatingLabel
           controlId="floatingInput"
-          label="Подтверждение пароля"
+          label={t('authForm.passwordConfirmation')}
           className="mb-3"
         >
           <Form.Control
@@ -76,7 +78,7 @@ const SignupForm = () => {
             type="password"
             value={formik.values.passwordConfirmation}
             onChange={formik.handleChange}
-            placeholder="Введите пароль"
+            placeholder={t('authForm.placeholder.passwordConfirmation')}
             isInvalid={!!formik.errors.passwordConfirmation}
           />
           <Form.Control.Feedback type="invalid">
@@ -84,9 +86,9 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {error?.request.status === 409 && <Alert variant="danger">Пользователь уже существует</Alert>}
-      <Button type="submit">Регистрация</Button>
-      <Button variant="link" href="/login">Войти</Button>
+      {error?.request.status === 409 && <Alert variant="danger">{t('authForm.errors.userExist')}</Alert>}
+      <Button type="submit">{t('authForm.actions.register')}</Button>
+      <Button variant="link" href="/login">{t('authForm.login')}</Button>
     </Form>
   );
 };

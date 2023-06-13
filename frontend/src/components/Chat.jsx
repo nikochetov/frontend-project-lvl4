@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './Messages/Messages';
 import Channels from './Channels/Channels';
@@ -20,6 +21,7 @@ const Chat = () => {
   const user = useContext(UserContext);
   const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
   const socket = useContext(SocketContext);
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(channelsActions.setCurrentChannelId(1));
@@ -42,16 +44,16 @@ const Chat = () => {
       <Row className="h-100 bg-white justify-content-md-center">
         <Col xs={3} xl={2} className="border-end px-0">
           <div className="bg-light mb-4 p-3 shadow-sm small d-flex justify-content-between align-items-center">
-            <div><span>Каналы</span></div>
+            <div><span>{t('channels.channels')}</span></div>
             <Button variant="light" className="p-0 text-primary btn btn-group-vertical" onClick={addChannel}>
-              <img src={addChannelIcon} style={{ width: '30px', color: '#0d6efd' }} alt="Добавить канал" />
+              <img src={addChannelIcon} style={{ width: '30px', color: '#0d6efd' }} alt={t('channels.addChannel')} />
             </Button>
           </div>
           <Channels />
         </Col>
         <Col className="p-0 h-100 position-relative">
           <div className="bg-light p-3 shadow-sm small d-flex justify-content-between align-items-center" style={{ height: '63px' }}>
-            <div><span>Сообщения</span></div>
+            <div><span>{t('messages.messages')}</span></div>
           </div>
           <div className="chat-messages overflow-scroll px-5 mt-2" style={{ height: '80%' }}>
             <Messages><MessageInput onFormSubmit={clickButton} /></Messages>

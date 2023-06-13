@@ -22,7 +22,6 @@ const useSubmit = (action) => {
     } catch (err) {
       setError(err);
       setLoading(false);
-      console.log(error?.request.status)
     }
   };
 
