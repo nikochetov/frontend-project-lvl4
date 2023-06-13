@@ -7,11 +7,11 @@ import signupRequest from '../services/signup-service';
 const useSubmit = (action) => {
   const navigate = useNavigate();
   const auth = useAuth();
-  const [errors, setErrors] = React.useState([]);
+  const [error, setError] = React.useState(null);
   const [isLoading, setLoading] = React.useState(false);
 
   const submit = async (values) => {
-    setErrors([]);
+    setError(null);
     setLoading(true);
     try {
       const response = await (action === 'login' ? loginRequest(values) : signupRequest(values));
@@ -20,12 +20,13 @@ const useSubmit = (action) => {
       localStorage.setItem('user', JSON.stringify(response.data));
       setLoading(false);
     } catch (err) {
-      setErrors([...errors, err]);
+      setError(err);
       setLoading(false);
+      console.log(error?.request.status)
     }
   };
 
-  return { isLoading, errors, submit };
+  return { isLoading, error, submit };
 };
 
 export default useSubmit;

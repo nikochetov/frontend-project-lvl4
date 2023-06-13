@@ -6,7 +6,7 @@ import useSubmit from '../../../hooks/useSubmit';
 import signupFormSchema from '../../../validators/signup-form-validator';
 
 const SignupForm = () => {
-  const { failed, submit } = useSubmit('signup');
+  const { error, submit } = useSubmit('signup');
 
   const formik = useFormik({
     initialValues: {
@@ -84,7 +84,7 @@ const SignupForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {failed && <Alert variant="danger">Пользователь уже существует</Alert>}
+      {error?.request.status === 409 && <Alert variant="danger">Пользователь уже существует</Alert>}
       <Button type="submit">Регистрация</Button>
       <Button variant="link" href="/login">Войти</Button>
     </Form>

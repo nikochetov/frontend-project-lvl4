@@ -7,7 +7,7 @@ import authFormSchema from '../../../validators/auth-form-validator';
 import useSubmit from '../../../hooks/useSubmit';
 
 const LoginForm = () => {
-  const { failed, submit } = useSubmit('login');
+  const { error, submit } = useSubmit('login');
 
   const formik = useFormik({
     initialValues: {
@@ -63,7 +63,7 @@ const LoginForm = () => {
           </Form.Control.Feedback>
         </FloatingLabel>
       </Form.Group>
-      {failed && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
+      {error?.response.status === 401 && <Alert variant="danger">Неверный логин и/или пароль</Alert>}
       <Button type="submit">Войти</Button>
       <Button variant="link" href="/signup">Регистрация</Button>
     </Form>
