@@ -1,9 +1,11 @@
 import {
   Button, Modal,
 } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const Remove = (props) => {
   const { onHide, submitModal, data } = props;
+  const { t } = useTranslation();
 
   return (
     <div
@@ -11,12 +13,12 @@ const Remove = (props) => {
     >
       <Modal show onHide={onHide}>
         <Modal.Header closeButton>
-          <Modal.Title>Удаление канала</Modal.Title>
+          <Modal.Title>{t('modal.removeChannel')}</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <p>
-            Вы действительно хотите удалить канал
+            {t('modal.message.removeConfirm')}
             {' '}
             <b>{data.name}</b>
             ?
@@ -24,8 +26,8 @@ const Remove = (props) => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => onHide()}>Отмена</Button>
-          <Button variant="danger" onClick={() => submitModal(data)}>Удалить</Button>
+          <Button variant="secondary" onClick={() => onHide()}>{t('actions.cancel')}</Button>
+          <Button variant="danger" onClick={() => submitModal(data)}>{t('actions.remove')}</Button>
         </Modal.Footer>
       </Modal>
     </div>

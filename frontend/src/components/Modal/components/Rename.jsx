@@ -5,10 +5,12 @@ import {
 import { useFormik } from 'formik';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { renameChannelSchema } from '../../../validators';
+import { useSelector } from 'react-redux';
+import { addChannelSchema } from '../../../validators';
 
 const Rename = (props) => {
   const { onHide, submitModal, data } = props;
+  const { channelsNames } = useSelector((state) => state.channelsState);
   const { t } = useTranslation();
   const inputEl = useRef(null);
 
@@ -20,7 +22,7 @@ const Rename = (props) => {
     initialValues: {
       body: data.name,
     },
-    validationSchema: renameChannelSchema(t),
+    validationSchema: addChannelSchema(t, channelsNames),
     onSubmit: (values) => {
       submitModal({ name: values.body, id: data.id });
     },
@@ -29,7 +31,7 @@ const Rename = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Переименование канала</Modal.Title>
+        <Modal.Title>{t('modal.renameChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={formik.handleSubmit}>
@@ -43,21 +45,21 @@ const Rename = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.body}
                 type="text"
-                placeholder="Введите название канала"
+                placeholder={t('modal.form.enterChannelName')}
                 isInvalid={!!formik.errors.body}
               />
               <FormControl.Feedback type="invalid">
-                {formik.errors.body || 'Должно быть уникальным'}
+                {formik.errors.body}
               </FormControl.Feedback>
             </InputGroup>
           </FormGroup>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => onHide()}>Отмена</Button>
+            <Button variant="secondary" onClick={() => onHide()}>{t('action.cancel')}</Button>
             <Button
               type="submit"
               className="btn btn-primary"
             >
-              Переименовать
+              {t('action.rename')}
             </Button>
           </Modal.Footer>
         </form>

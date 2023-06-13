@@ -34,6 +34,8 @@ export default {
     actions: {
       rename: 'Переименовать',
       remove: 'Удалить',
+      cancel: 'Отмена',
+      add: 'Добавить',
     },
     validation: {
       range: 'От {{from}} до {{to}} символов',
@@ -42,6 +44,17 @@ export default {
       notEqualPasswords: 'Пароли должны совпадать',
       required: 'Обязательное поле',
       channelExist: 'Канал уже существует',
+    },
+    modal: {
+      addChannel: 'Добавление канала',
+      removeChannel: 'Удаление канала',
+      renameChannel: 'Переименование канала',
+      form: {
+        enterChannelName: 'Введите название канала',
+      },
+      message: {
+        removeConfirm: 'Вы действительно хотите удалить канал',
+      },
     },
   },
 };

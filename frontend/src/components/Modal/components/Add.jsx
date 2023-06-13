@@ -7,7 +7,7 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
-import addChannelSchema from '../../../validators/add-channel-schema';
+import { addChannelSchema } from '../../../validators';
 
 const Add = (props) => {
   const { onHide, submitModal } = props;
@@ -34,7 +34,7 @@ const Add = (props) => {
   return (
     <Modal show onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Добавление канала</Modal.Title>
+        <Modal.Title>{t('modal.addChannel')}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form onSubmit={formik.handleSubmit}>
@@ -48,21 +48,21 @@ const Add = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.body}
                 type="text"
-                placeholder="Введите название канала"
+                placeholder={t('modal.form.addChannelName')}
                 isInvalid={!!formik.errors.body}
               />
               <FormControl.Feedback type="invalid">
-                {formik.errors.body || 'Должно быть уникальным'}
+                {formik.errors.body}
               </FormControl.Feedback>
             </InputGroup>
           </FormGroup>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => onHide()}>Отмена</Button>
+            <Button variant="secondary" onClick={() => onHide()}>{t('actions.cancel')}</Button>
             <Button
               type="submit"
               className="btn btn-primary"
             >
-              Добавить
+              {t('actions.add')}
             </Button>
           </Modal.Footer>
         </form>
