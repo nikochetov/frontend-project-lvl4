@@ -8,7 +8,7 @@ const signupFormSchema = () => yup.object().shape({
   password: yup.string()
     .min(6, 'Не менее 3х символов')
     .max(50, 'Не более 50 символов')
-    .oneOf([yup.ref('passwordConfirmation'), null], 'Пароли не совпад')
+    .oneOf([yup.ref('passwordConfirmation'), null], 'Пароли должны совпадать')
     .required('Обязательное поле'),
   passwordConfirmation: yup.string()
     .min(6, 'Не менее 6 символов')
