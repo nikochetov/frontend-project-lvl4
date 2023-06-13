@@ -47,7 +47,7 @@ const SignupForm = () => {
           <Form.Control
             name="password"
             required
-            type="text"
+            type="password"
             value={formik.values.password}
             onChange={formik.handleChange}
             placeholder="Введите пароль"
@@ -67,7 +67,7 @@ const SignupForm = () => {
           <Form.Control
             name="passwordConfirmation"
             required
-            type="text"
+            type="password"
             value={formik.values.passwordConfirmation}
             onChange={formik.handleChange}
             placeholder="Введите пароль"
