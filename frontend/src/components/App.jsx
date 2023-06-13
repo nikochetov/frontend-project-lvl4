@@ -33,7 +33,7 @@ const App = () => (
   <Router>
     <Navbar bg="light" expand="lg" className="shadow">
       <Container>
-        <Navbar.Brand as={Link} to="/">Shlack</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/">Hexlet Chat</Navbar.Brand>
         <AuthButton />
       </Container>
     </Navbar>
