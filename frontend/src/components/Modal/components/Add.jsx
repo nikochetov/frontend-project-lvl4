@@ -48,7 +48,7 @@ const Add = (props) => {
                 onChange={formik.handleChange}
                 value={formik.values.body}
                 type="text"
-                placeholder={t('modal.form.addChannelName')}
+                placeholder={t('modal.form.enterChannelName')}
                 isInvalid={!!formik.errors.body}
               />
               <FormControl.Feedback type="invalid">
