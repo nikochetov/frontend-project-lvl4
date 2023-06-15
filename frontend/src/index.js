@@ -1,5 +1,6 @@
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import { createRoot } from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import init from './init';
