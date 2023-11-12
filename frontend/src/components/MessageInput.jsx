@@ -4,6 +4,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useTranslation } from 'react-i18next';
 import sendImage from '../assets/icons/send.svg';
+import { cleanMessage } from '../utils';
 
 const MessageInput = ({ onFormSubmit }) => {
   const { t } = useTranslation();
@@ -14,7 +15,9 @@ const MessageInput = ({ onFormSubmit }) => {
       message: '',
     },
     onSubmit: (values) => {
-      onFormSubmit(values.message);
+      const { message } = values;
+      const filteredMessage = cleanMessage(message);
+      onFormSubmit(filteredMessage);
       formik.setValues({ message: '' });
     },
     validationSchema: yup.object().shape({
