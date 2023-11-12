@@ -3,7 +3,6 @@ import React from 'react';
 import socketRequestKind from '../constants/socket-request-kind';
 import { actions as messagesActions } from '../slices/messagesSlice';
 import { actions as channelsActions } from '../slices/channelsSlice';
-import SocketConnectionCondition from '../constants/socket-connection-condition';
 
 const useSocket = (socket) => {
   // const [socketConnectionCondition, setSocketConnectionCondition] = React.useState('idle');

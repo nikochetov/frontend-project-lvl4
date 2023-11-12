@@ -6,7 +6,6 @@ import { Button, Container, Navbar } from 'react-bootstrap';
 import NotMatch from './NotMatch.jsx';
 import Chat from './Chat';
 import { useAuth } from '../hooks';
-import { SocketProvider } from '../providers';
 import Login from './Login/components/Login';
 import Signup from './Signup/components/Signup';
 
@@ -46,9 +45,7 @@ const App = () => (
         path="/chat"
         element={(
           <PrivateRoute>
-            <SocketProvider>
-              <Chat />
-            </SocketProvider>
+            <Chat />
           </PrivateRoute>
       )}
       />
