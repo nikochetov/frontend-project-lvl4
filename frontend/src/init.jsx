@@ -16,11 +16,6 @@ const rollbarConfig = {
   environment: 'testenv',
 };
 
-function TestError() {
-  const a = null;
-  return a.hello();
-}
-
 const init = async () => {
   const i18n = i18next.createInstance();
   await i18n.use(initReactI18next).init({ resources, fallbackLng: 'ru' });
@@ -50,7 +45,6 @@ const init = async () => {
               <AuthProvider>
                 <SocketProvider socket={socket}>
                   <App />
-                  <TestError />
                 </SocketProvider>
               </AuthProvider>
             </UserProvider>
