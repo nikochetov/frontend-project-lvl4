@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from 'react-redux';
 import { io } from 'socket.io-client';
 import resources from './locales';
 import store from './slices';
@@ -9,6 +9,17 @@ import { AuthProvider, UserProvider, SocketProvider } from './providers';
 import socketRequestKind from './constants/socket-request-kind';
 import { actions as messagesActions } from './slices/messagesSlice';
 import { actions as channelsActions } from './slices/channelsSlice';
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
+
+const rollbarConfig = {
+  accessToken: '5cffcc788b104824a96aafaf03396fcf',
+  environment: 'testenv',
+};
+
+function TestError() {
+  const a = null;
+  return a.hello();
+}
 
 const init = async () => {
   const i18n = i18next.createInstance();
@@ -31,18 +42,23 @@ const init = async () => {
   });
 
   return (
-    <Provider store={store}>
-      <I18nextProvider i18n={i18n}>
-        <UserProvider>
-          <AuthProvider>
-            <SocketProvider socket={socket}>
-              <App />
-            </SocketProvider>
-          </AuthProvider>
-        </UserProvider>
-      </I18nextProvider>
-    </Provider>
-  );
+    <RollbarProvider config={rollbarConfig}>
+      <ErrorBoundary>
+        <StoreProvider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <UserProvider>
+              <AuthProvider>
+                <SocketProvider socket={socket}>
+                  <App />
+                  <TestError />
+                </SocketProvider>
+              </AuthProvider>
+            </UserProvider>
+          </I18nextProvider>
+        </StoreProvider>
+      </ErrorBoundary>
+    </RollbarProvider>
+);
 };
 
 export default init;
