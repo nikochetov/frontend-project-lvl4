@@ -4,10 +4,10 @@ import {
 } from 'react-router-dom';
 import { Button, Container, Navbar } from 'react-bootstrap';
 import NotMatch from './NotMatch.jsx';
-import Chat from './Chat';
 import { useAuth } from '../hooks';
 import Login from './Login/components/Login';
 import Signup from './Signup/components/Signup';
+import ChatApp from './ChatApp';
 
 const PrivateRoute = ({ children }) => {
   const auth = useAuth();
@@ -45,7 +45,7 @@ const App = () => (
         path="/chat"
         element={(
           <PrivateRoute>
-            <Chat />
+            <ChatApp />
           </PrivateRoute>
       )}
       />
