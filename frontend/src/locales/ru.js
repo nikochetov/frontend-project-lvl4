@@ -5,30 +5,35 @@ export default {
       register: 'Регистрация',
       login: 'Войти',
       logout: 'Выйти',
-      username: 'Имя пользователя',
+      username: 'Ваш ник',
       password: 'Пароль',
-      passwordConfirmation: 'Подтверждение пароля',
+      passwordConfirmation: 'Подтвердите пароль',
       placeholder: {
         enterUsername: 'Введите имя пользователя',
         enterPassword: 'Введите пароль',
-        passwordConfirmation: 'Подтвердите пароля',
+        passwordConfirmation: 'Подтвердите пароль',
       },
       actions: {
         register: 'Зарегистрироваться',
         login: 'Войти',
       },
       errors: {
-        wrongUsernameOrPassword: 'Неверный логин и/или пароль',
+        wrongUsernameOrPassword: 'Неверные имя пользователя или пароль',
         userExist: 'Пользователь уже существует',
       },
     },
     channels: {
       channels: 'Каналы',
       addChannel: 'Добавить канал',
+      messages: {
+        channelAdd: 'Канал создан',
+        channelRename: 'Канал переименован',
+        channelDelete: 'Канал удалён',
+      },
     },
     messages: {
       messages: 'Сообщения',
-      sendMessage: 'Отправить сообщение',
+      sendMessage: 'Отправить',
       enterMessage: 'Введите сообщение...',
     },
     actions: {
