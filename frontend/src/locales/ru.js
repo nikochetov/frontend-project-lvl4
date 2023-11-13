@@ -56,5 +56,9 @@ export default {
         removeConfirm: 'Вы действительно хотите удалить канал',
       },
     },
+    connectNotification: {
+      success: 'Соединение восстановлено',
+      error: 'Ошибка соединения',
+    },
   },
 };

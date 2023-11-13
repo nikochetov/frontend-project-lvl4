@@ -4,7 +4,6 @@ import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { ToastContainer } from 'react-toastify';
 import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './Messages/Messages';
 import Channels from './Channels/Channels';
@@ -16,7 +15,7 @@ import socketRequestKind from '../constants/socket-request-kind';
 import ModalContainer from './Modal/components/ModalContainer';
 import { actions as modalActions } from '../slices/modalSlice';
 import modalKind from '../constants/modal-kind';
-import useSocketCondition from '../hooks/useSocketCondition';
+import ConnectionNotify from './ConnectionNotify';
 
 const Chat = () => {
   const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const Chat = () => {
   const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
   const socket = useContext(SocketContext);
   const { t } = useTranslation();
-  useSocketCondition();
 
   useEffect(() => {
     dispatch(channelsActions.setCurrentChannelId(1));
@@ -64,7 +62,7 @@ const Chat = () => {
         </Col>
       </Row>
       <ModalContainer />
-      <ToastContainer />
+      <ConnectionNotify />
     </Container>
   );
 };

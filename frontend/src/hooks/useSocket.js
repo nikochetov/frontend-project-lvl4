@@ -5,9 +5,6 @@ import { actions as messagesActions } from '../slices/messagesSlice';
 import { actions as channelsActions } from '../slices/channelsSlice';
 
 const useSocket = (socket) => {
-  // const [socketConnectionCondition, setSocketConnectionCondition] = React.useState('idle');
-  // const [socketAction, setSocketAction] = React.useState(null);
-
   React.useEffect(() => () => {
     socket.disconnect();
   }, []);
@@ -27,20 +24,6 @@ const useSocket = (socket) => {
     dispatch(channelsActions.removeChannel(ev));
     dispatch(channelsActions.setCurrentChannelId(1));
   });
-
-  // React.useEffect(() => {
-  //   notify(socketConnectionCondition);
-  // }, [socketConnectionCondition]);
-
-  // socket.on(SocketConnectionCondition.connect, () => {
-  //   setSocketConnectionCondition(socketConnectionCondition === 'error' ? 'connected' : socketConnectionCondition);
-  // });
-  // socket.on(SocketConnectionCondition.disconnect, () => {
-  //   setSocketConnectionCondition('disconnected');
-  // });
-  // socket.on(SocketConnectionCondition.error, () => {
-  //   setSocketConnectionCondition('error');
-  // });
 
   return socket;
 };
