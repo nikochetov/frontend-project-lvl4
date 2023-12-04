@@ -10,6 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { state } = location;
 
+  // todo check in global, APP mb
   React.useEffect(() => {
     if (auth.isLoggedIn) {
       navigate(state?.from || '/chat');

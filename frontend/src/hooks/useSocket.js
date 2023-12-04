@@ -3,13 +3,12 @@ import React from 'react';
 const useSocket = (socket) => {
   React.useEffect(() => {
     socket.connect();
+    console.log('connect::::on hook::::', socket.id);
 
     return () => {
       socket.disconnect();
     };
   }, []);
-
-  return socket;
 };
 
 export default useSocket;

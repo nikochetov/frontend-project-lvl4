@@ -8,6 +8,7 @@ const Channel = ({
 }) => {
   const { id, name, removable } = channel;
   const { t } = useTranslation();
+  // todo map
   return (
     <ListGroup.Item>
       <Dropdown as={ButtonGroup}>
@@ -19,7 +20,7 @@ const Channel = ({
 
           <Dropdown.Menu>
             <Dropdown.Item onClick={() => onRenameChannel(id)}>{t('actions.rename')}</Dropdown.Item>
-            <Dropdown.Item onClick={() => onDeleteChannel(id)} style={{ color: '#dc3545' }}>{t('actions.remove')}</Dropdown.Item>
+            <Dropdown.Item onClick={() => onDeleteChannel(id)} style={{ color: '#4c3f40' }}>{t('actions.remove')}</Dropdown.Item>
           </Dropdown.Menu>
         </>
         )}

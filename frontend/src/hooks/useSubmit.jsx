@@ -11,7 +11,6 @@ const useSubmit = (action) => {
   const [isLoading, setLoading] = React.useState(false);
 
   const submit = async (values) => {
-    setError(null);
     setLoading(true);
     try {
       const response = await (action === 'login' ? loginRequest(values) : signupRequest(values));

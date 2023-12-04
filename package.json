@@ -8,7 +8,6 @@
     "start": "start-server -s ./frontend/build",
     "postinstall": "cd frontend && npm ci"
   },
-  "proxy": "http://localhost:5001",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nikochetov/frontend-project-lvl4.git"
@@ -27,6 +26,6 @@
   },
   "homepage": "https://github.com/nikochetov/frontend-project-lvl4#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^1.1.5"
+    "@hexlet/chat-server": "^1.1.8"
   }
 }

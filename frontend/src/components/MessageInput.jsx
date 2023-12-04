@@ -16,7 +16,7 @@ const MessageInput = ({ onFormSubmit }) => {
     },
     onSubmit: (values) => {
       const { message } = values;
-      const filteredMessage = cleanMessage(message);
+      const filteredMessage = cleanMessage(message) // todo if empty;
       onFormSubmit(filteredMessage);
       formik.setValues({ message: '' });
     },
@@ -29,7 +29,7 @@ const MessageInput = ({ onFormSubmit }) => {
     messageInput.current.focus();
   }, []);
 
-  const submitForm = () => {
+  const submitForm = () => () => {
     messageInput.current.focus();
   };
 
@@ -49,7 +49,7 @@ const MessageInput = ({ onFormSubmit }) => {
             type="submit"
             variant="outline-secondary"
             id="button-addon2"
-            onClick={() => submitForm()}
+            onClick={submitForm}
           >
             <img src={sendImage} alt="Send message" placeholder={t('actions.messages.sendMessage')} />
           </Button>

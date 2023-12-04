@@ -12,15 +12,13 @@ const ChatApp = () => {
   axios.interceptors.response.use(
     (response) => response,
     (error) => {
-      if (error.response.status === 401) {
+      if (auth.isLoggedIn && error.response.status === 401) {
         auth.logOut();
       }
     },
   );
 
-  return (
-    <Chat />
-  );
+  return <Chat />;
 };
 
 export default ChatApp;

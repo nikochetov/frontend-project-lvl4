@@ -10,20 +10,20 @@ import Signup from './Signup/components/Signup';
 import ChatApp from './ChatApp';
 
 const PrivateRoute = ({ children }) => {
-  const auth = useAuth();
+  const { isLoggedIn } = useAuth();
   const location = useLocation();
 
   return (
-    auth.isLoggedIn ? children : <Navigate to="/login" state={{ from: location }} />
+    isLoggedIn ? children : <Navigate to="/login" state={{ from: location }} />
   );
 };
 
 const AuthButton = () => {
-  const auth = useAuth();
+  const { logOut, isLoggedIn } = useAuth();
 
   return (
-    auth.isLoggedIn
-      ? <Button onClick={auth.logOut}>Выйти</Button>
+    isLoggedIn
+      ? <Button onClick={logOut}>Выйти</Button>
       : null
   );
 };

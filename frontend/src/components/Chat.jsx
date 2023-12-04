@@ -10,7 +10,6 @@ import Channels from './Channels/Channels';
 import { SocketContext, UserContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
-import { actions as channelsActions } from '../slices/channelsSlice';
 import socketRequestKind from '../constants/socket-request-kind';
 import ModalContainer from './Modal/components/ModalContainer';
 import { actions as modalActions } from '../slices/modalSlice';
@@ -25,7 +24,7 @@ const Chat = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    dispatch(channelsActions.setCurrentChannelId(1));
+    // check it
     dispatch(getDataThunk());
   }, []);
 
@@ -34,12 +33,14 @@ const Chat = () => {
   };
 
   const clickButton = (message) => {
+    console.log('on message send::::::::', socket.id)
     socket.emit(
       socketRequestKind.newMessage,
       { body: message, username: user.username, channelId: currentChannelId },
     );
   };
 
+  // todo
   return (
     <Container className="my-4 rounded shadow" md={6} style={{ height: '85vh' }}>
       <Row className="h-100 bg-white justify-content-md-center">
