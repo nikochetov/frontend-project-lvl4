@@ -21,7 +21,7 @@ const MessageInput = ({ onFormSubmit }) => {
       formik.setValues({ message: '' });
     },
     validationSchema: yup.object().shape({
-      message: yup.string().required('Required'),
+      message: yup.string().required('required'),
     }),
   });
 
