@@ -23,11 +23,10 @@ const init = async () => {
     autoConnect: false,
   });
 
-  socket.on('connect', () => {
-    console.log(socket.id); // "G5p5..."
-  });
+  // socket.on('connect', () => {
+  //   console.log(socket.id); // "G5p5..."
+  // });
   socket.on(socketRequestKind.newMessage, (ev) => {
-    console.log('new message listen::::::', ev);
     store.dispatch(messagesActions.addMessage(ev));
   });
   socket.on(socketRequestKind.newChannel, (ev) => {

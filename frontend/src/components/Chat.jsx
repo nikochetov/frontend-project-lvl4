@@ -32,8 +32,7 @@ const Chat = () => {
     dispatch(modalActions.openModal({ kind: modalKind.add }));
   };
 
-  const clickButton = (message) => {
-    console.log('on message send::::::::', socket.id)
+  const sendMessage = (message) => {
     socket.emit(
       socketRequestKind.newMessage,
       { body: message, username: user.username, channelId: currentChannelId },
@@ -57,8 +56,9 @@ const Chat = () => {
           <div className="bg-light p-3 shadow-sm small d-flex justify-content-between align-items-center" style={{ height: '63px' }}>
             <div><span>{t('messages.messages')}</span></div>
           </div>
-          <div className="chat-messages overflow-scroll px-5 mt-2" style={{ height: '80%' }}>
-            <Messages><MessageInput onFormSubmit={clickButton} /></Messages>
+          <div className="d-flex flex-column justify-content-between overflow-scroll px-5 mt-2" style={{ height: '85%' }}>
+            <Messages />
+            <MessageInput onFormSubmit={sendMessage} />
           </div>
         </Col>
       </Row>

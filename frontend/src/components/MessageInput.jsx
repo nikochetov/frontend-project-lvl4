@@ -16,7 +16,7 @@ const MessageInput = ({ onFormSubmit }) => {
     },
     onSubmit: (values) => {
       const { message } = values;
-      const filteredMessage = cleanMessage(message) // todo if empty;
+      const filteredMessage = cleanMessage(message); // todo if empty;
       onFormSubmit(filteredMessage);
       formik.setValues({ message: '' });
     },
@@ -34,7 +34,7 @@ const MessageInput = ({ onFormSubmit }) => {
   };
 
   return (
-    <Form onSubmit={formik.handleSubmit} className="position-absolute bottom-0">
+    <Form onSubmit={formik.handleSubmit}>
       <Form.Group controlId="message">
         <InputGroup className="mt-3 mb-3">
           <Form.Control
