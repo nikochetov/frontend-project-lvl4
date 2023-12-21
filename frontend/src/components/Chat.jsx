@@ -1,13 +1,12 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Container, Row, Col, Button,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { getDataThunk } from '../thunks/data-thunk';
 import Messages from './Messages/Messages';
 import Channels from './Channels/Channels';
-import { SocketContext, UserContext } from '../contexts';
+import { SocketContext } from '../contexts';
 import MessageInput from './MessageInput';
 import addChannelIcon from '../assets/icons/plus.svg';
 import socketRequestKind from '../constants/socket-request-kind';
@@ -18,15 +17,10 @@ import ConnectionNotify from './ConnectionNotify';
 
 const Chat = () => {
   const dispatch = useDispatch();
-  const user = useContext(UserContext);
+  const user = useSelector((state) => state.userState.user);
   const currentChannelId = useSelector((state) => state.channelsState.currentChannelId);
   const socket = useContext(SocketContext);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    // check it
-    dispatch(getDataThunk());
-  }, []);
 
   const addChannel = () => {
     dispatch(modalActions.openModal({ kind: modalKind.add }));

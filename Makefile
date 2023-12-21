@@ -15,3 +15,6 @@ deploy:
 
 start:
 	make start-backend & make start-frontend
+
+lint:
+	make -C frontend lint
